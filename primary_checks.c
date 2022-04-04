@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   primary_checks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/01 10:04:10 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/04 16:32:33 by pskytta          ###   ########.fr       */
+/*   Created: 2022/04/04 12:46:14 by pskytta           #+#    #+#             */
+/*   Updated: 2022/04/04 15:26:08 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_ls	*allocate(char **str, int i)
+int	action_check(int n)
 {
-	t_ls	*input;
-
-	input = ft_memalloc(sizeof(t_ls));
-	while (str[i] != '\0')
-	{
-		if (i == 1)
-			input->command = ft_strdup(str[i]);
-		if (i <= 6)
-		{
-			if (ft_strchr(str[i], '-') != NULL)
-				input->flags = ft_strdup(str[i]);
-		}
-		else
-			input->files = ft_strdup(str[i]);
-	}
-	return (input);
+	if (n == 2)
+		return (1);
+	if (n == 3)
+		return (2);
+	if (n > 3)
+		return (3);
+	else
+		return (0);
 }
+
