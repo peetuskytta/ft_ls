@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:45:58 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/04 16:31:51 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/05 15:47:58 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,8 @@
 # include <unistd.h>
 # include <dirent.h>
 
-typedef struct s_ls
-{
-	char	*command;
-	char	*flags;
-	char	**files;
-} t_ls;
-
-int		action_check(int n);
-t_ls	*allocate(char **str, int i);
+char	**save_argv(char **av, int count, char **command);
 void	print_double(char **str);
-void	print_error(void);
+void	print_error(int n);
 
 #endif

@@ -3,7 +3,7 @@ DEBUG_F := -g
 FLAGS := -Wall -Wextra -Werror
 
 NAME := ft_ls
-SOURCES := start.c prints.c parser.c
+SOURCES := start.c prints.c 
 
 OBJ := $(SOURCES:.c=.o)
 
@@ -12,7 +12,7 @@ LIBFT_M := make -C libft
 all: $(NAME)
 
 $(NAME):
-	$(LIBFT_M)
+	@$(LIBFT_M)
 	@$(CC) $(FLAGS) -c $(SOURCES)
 	@$(CC) $(FLAGS) $(OBJ) libft/libft.a -o $(NAME)
 
