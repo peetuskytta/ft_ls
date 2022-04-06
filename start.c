@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 16:16:47 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/06 07:33:03 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/06 13:10:22 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,18 @@ char	**save_argv(char **av, int count, char **command)
 int	main(int argc, char **argv)
 {
 	int		action;
-	char	**command;
+	char	**line;
 
-	command = NULL;
+	line = NULL;
 	if (argc < 2)
 		print_error(1);
-	command = save_argv(argv++, argc, command);
+	line = save_argv(argv++, argc, line);
 	action = action_check(argc);
 	ft_putnbr(action);
 	ft_putendl("");
 //	ft_putnbr(argc);
 //	ft_putendl("");
-	print_double(command);
+	print_double(line);
 
 // FREE THE MEMORY ALLOCATED FOR THE COMMAND LINE	
 	return (0);

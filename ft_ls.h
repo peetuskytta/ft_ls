@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:45:58 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/06 08:27:43 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/06 14:53:06 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,15 @@
 # include "libft/libft.h"
 # include <unistd.h>
 # include <dirent.h>
+#include <errno.h>
 
-char	**save_argv(char **av, int count, char **command);
+
 void	print_double(char **str);
-void	print_error(int n);
+void	arg_errors(int n, char *str);
 void	list_files(const char *dirname);
+void	print_2ws(const char *str);
+int		argument_check(int count, char **str);
+size_t	file_count(const char *dirname);
+
 
 #endif

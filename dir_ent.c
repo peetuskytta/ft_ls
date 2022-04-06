@@ -12,6 +12,26 @@
 
 #include "ft_ls.h"
 
+size_t	file_count(const char *dirname)
+{
+	DIR				*d;
+	size_t			count;
+	struct dirent	*ent;
+
+	count = 1;
+	d = opendir(dirname);
+	if (d == NULL)
+		return (0);
+	ent = readdir(d);
+	while (ent != NULL)
+	{
+		ent = readdir(d);
+		count++;
+	}
+	closedir(d);
+	return (count);
+}
+
 void	list_files(const char *dirname)
 {
 	DIR				*dir;
@@ -19,38 +39,22 @@ void	list_files(const char *dirname)
 
 	dir = opendir(dirname);
 	if (dir == NULL)
-		return;
-	
-	ft_putstr("Reading files in: ");
-	ft_putendl(dirname);
-
+		return ;
 	entity = readdir(dir);
 	while (entity != NULL)
 	{
-		ft_putnbr(entity->d_type);
-		ft_putchar(' ');
-		//ft_putnbr(entity->d_ino);
-		//ft_putchar(' ');
-		//ft_putnbr(entity->d_off);
-		//ft_putchar(' ');
-		//ft_putnbr(entity->d_reclen);
-		//ft_putchar(' ');
-		ft_putstr(dirname);
-		ft_putendl(entity->d_name);
-		if (entity->d_type == DT_DIR && ft_strcmp(entity->d_name, ".") != 0 && ft_strcmp(entity->d_name, "..") != 0)
-		{
-			char	path[100] = {0};
-			ft_strcat(path, dirname);
-			ft_strcat(path, "/");
-			ft_strcat(path, entity->d_name);
-			list_files(path);
-		}
+		if (entity->d_name[0] != '.')
+			print_2ws(entity->d_name);
 		entity = readdir(dir);
 	}
+	ft_putendl("");
 	closedir(dir);
 }
 int	main(int argc, char *argv[])
 {
-	list_files(".");
+	if (argument_check(argc, argv) == 1)
+		list_files(".");
+	else
+		arg_errors(1, "");
 	return (0);
 }

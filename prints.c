@@ -6,11 +6,19 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:52:31 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/05 15:51:16 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/06 14:56:24 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void	print_2ws(const char *str)
+{
+	ft_putstr("\033[0;32m");
+	ft_putstr(str);
+	ft_putstr("\033[0m");
+	ft_putstr("  ");
+}
 
 void	print_double(char **str)
 {
@@ -22,17 +30,4 @@ void	print_double(char **str)
 		ft_putendl(str[i]);
 		i++;
 	}
-}
-
-void	print_error(int n)
-{
-	if (n == 1)
-	{
-		ft_putendl("usage: ./ft_ls <ls> <flags> <filename>");
-		exit(1);
-	}
-	if (n == 2)
-		ft_putendl("other mistake?");
-	else
-		ft_putendl("error");
 }
