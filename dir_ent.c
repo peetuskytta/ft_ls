@@ -12,29 +12,45 @@
 
 #include "ft_ls.h"
 
-int	main(int argc, char *argv[])
+void	list_files(const char *dirname)
 {
 	DIR				*dir;
 	struct dirent	*entity;
 
-	dir = opendir(".");
+	dir = opendir(dirname);
 	if (dir == NULL)
-		return (1);
+		return;
+	
+	ft_putstr("Reading files in: ");
+	ft_putendl(dirname);
+
 	entity = readdir(dir);
 	while (entity != NULL)
 	{
 		ft_putnbr(entity->d_type);
 		ft_putchar(' ');
-		ft_putnbr(entity->d_ino);
-		ft_putchar(' ');
-		ft_putnbr(entity->d_off);
-		ft_putchar(' ');
-		ft_putnbr(entity->d_reclen);
-		ft_putchar(' ');
+		//ft_putnbr(entity->d_ino);
+		//ft_putchar(' ');
+		//ft_putnbr(entity->d_off);
+		//ft_putchar(' ');
+		//ft_putnbr(entity->d_reclen);
+		//ft_putchar(' ');
+		ft_putstr(dirname);
 		ft_putendl(entity->d_name);
+		if (entity->d_type == DT_DIR && ft_strcmp(entity->d_name, ".") != 0 && ft_strcmp(entity->d_name, "..") != 0)
+		{
+			char	path[100] = {0};
+			ft_strcat(path, dirname);
+			ft_strcat(path, "/");
+			ft_strcat(path, entity->d_name);
+			list_files(path);
+		}
 		entity = readdir(dir);
 	}
-
 	closedir(dir);
+}
+int	main(int argc, char *argv[])
+{
+	list_files(".");
 	return (0);
 }
