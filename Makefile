@@ -7,7 +7,7 @@ SOURCES := start.c prints.c
 
 OBJ := $(SOURCES:.c=.o)
 
-LIBFT_M := make -C libft
+LIBFT_M := make -s -C libft
 
 all: $(NAME)
 
@@ -17,11 +17,11 @@ $(NAME):
 	@$(CC) $(FLAGS) $(OBJ) libft/libft.a -o $(NAME)
 
 clean:
-	@make -C libft clean
+	@make -s -C libft clean
 	@rm -f $(OBJ)
 
 fclean: clean
-	@make -C libft fclean
+	@make -s -C libft fclean
 	@rm -f $(NAME)
 
 re: fclean all

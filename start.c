@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 16:16:47 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/05 16:01:31 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/06 07:33:03 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	main(int argc, char **argv)
 		print_error(1);
 	command = save_argv(argv++, argc, command);
 	action = action_check(argc);
-//	ft_putnbr(action);
-//	ft_putendl("");
+	ft_putnbr(action);
+	ft_putendl("");
 //	ft_putnbr(argc);
 //	ft_putendl("");
 	print_double(command);

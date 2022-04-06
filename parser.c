@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 10:04:10 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/04 16:32:33 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/06 07:37:54 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ t_ls	*allocate(char **str, int i)
 				input->flags = ft_strdup(str[i]);
 		}
 		else
+		{
+			
 			input->files = ft_strdup(str[i]);
+		}
 	}
 	return (input);
 }
