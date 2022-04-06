@@ -12,13 +12,11 @@
 
 #include "ft_ls.h"
 
-size_t	file_count(const char *dirname)
+int	file_count(const char *dirname, int count)
 {
 	DIR				*d;
-	size_t			count;
 	struct dirent	*ent;
 
-	count = 1;
 	d = opendir(dirname);
 	if (d == NULL)
 		return (0);
@@ -32,11 +30,15 @@ size_t	file_count(const char *dirname)
 	return (count);
 }
 
-void	list_files(const char *dirname)
+void	list_files(const char *dirname, int i, int count)
 {
 	DIR				*dir;
 	struct dirent	*entity;
+	char			**files;
 
+	count = file_count(dirname, count);
+	files = (char **)malloc(sizeof(char) * count + 1);
+//	ft_putnbr(count);
 	dir = opendir(dirname);
 	if (dir == NULL)
 		return ;
@@ -44,17 +46,23 @@ void	list_files(const char *dirname)
 	while (entity != NULL)
 	{
 		if (entity->d_name[0] != '.')
+		{
+			files[i] = ft_strdup(entity->d_name);
 			print_2ws(entity->d_name);
+			i++;
+		}
 		entity = readdir(dir);
 	}
-	ft_putendl("");
+	//print_double(files);
 	closedir(dir);
 }
 int	main(int argc, char *argv[])
 {
 	if (argument_check(argc, argv) == 1)
-		list_files(".");
+		list_files(".", 0, 0);
 	else
 		arg_errors(1, "");
+//	ft_putstr("\033[30G");
+//	ft_putendl("hello");
 	return (0);
 }

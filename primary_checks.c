@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 12:46:14 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/06 14:00:24 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/06 15:22:15 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ls_check(char *str)
 int	argument_check(int count, char **str)
 {
 	int		action;
-	char	temp;
+//	char	temp;
 
 	ls_check(str[1]);
 	action = action_check(count);
