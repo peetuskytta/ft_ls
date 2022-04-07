@@ -3,11 +3,11 @@ DEBUG_F := -g
 FLAGS := -Wall -Wextra -Werror
 
 NAME := ft_ls
-SOURCES := dir_ent.c prints.c primary_checks.c error_handling.c 
+SOURCES := dir_ent.c error_handling.c primary_checks.c prints.c sort.c
 
 OBJ := $(SOURCES:.c=.o)
 
-LIBFT_M := make -s -C libft
+LIBFT_M := make -C libft
 
 all: $(NAME)
 
@@ -17,11 +17,11 @@ $(NAME):
 	@$(CC) $(FLAGS) $(OBJ) libft/libft.a -o $(NAME)
 
 clean:
-	@make -s -C libft clean
+	@make -C libft clean
 	@rm -f $(OBJ)
 
 fclean: clean
-	@make -s -C libft fclean
+	@make -C libft fclean
 	@rm -f $(NAME)
 
 re: fclean all

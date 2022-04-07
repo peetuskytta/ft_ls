@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   direct.c                                           :+:      :+:    :+:   */
+/*   dir_ent.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/06 07:45:40 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/06 07:45:40 by pskytta          ###   ########.fr       */
+/*   Created: 2022/04/07 08:49:13 by pskytta           #+#    #+#             */
+/*   Updated: 2022/04/07 17:29:31 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,54 +15,63 @@
 int	file_count(const char *dirname, int count)
 {
 	DIR				*d;
-	struct dirent	*ent;
+	struct dirent	*entity;
 
 	d = opendir(dirname);
 	if (d == NULL)
 		return (0);
-	ent = readdir(d);
-	while (ent != NULL)
+	entity = readdir(d);
+	while (entity != NULL)
 	{
-		ent = readdir(d);
+		entity = readdir(d);
 		count++;
 	}
 	closedir(d);
 	return (count);
 }
 
-void	list_files(const char *dirname, int i, int count)
+t_data	*list_files(const char *dirname, int i, int count)
 {
 	DIR				*dir;
 	struct dirent	*entity;
-	char			**files;
 
 	count = file_count(dirname, count);
-	files = (char **)malloc(sizeof(char) * count + 1);
-//	ft_putnbr(count);
+	t_data	*f = malloc(count * sizeof(t_data));
 	dir = opendir(dirname);
 	if (dir == NULL)
-		return ;
+		return (NULL);
 	entity = readdir(dir);
 	while (entity != NULL)
 	{
-		if (entity->d_name[0] != '.')
-		{
-			files[i] = ft_strdup(entity->d_name);
-			print_2ws(entity->d_name);
+			f[i].f_name = ft_strdup(entity->d_name);
+			f[i].type = entity->d_type;
+			f[i].name_len = entity->d_namlen;
+			f[i].count = count;
+			entity = readdir(dir);
 			i++;
-		}
-		entity = readdir(dir);
 	}
-	//print_double(files);
 	closedir(dir);
+	return (f);
 }
 int	main(int argc, char *argv[])
 {
+	int		*flags[5];
+	t_data	*ptr;
+	int		i;
+
+	i = 0;
+	ft_bzero(flags, 5);
 	if (argument_check(argc, argv) == 1)
-		list_files(".", 0, 0);
+	{
+		ptr = list_files(".", 0, 0);
+
+		while (i < ptr[0].count)
+		{
+			ft_putendl(ptr[i].f_name);
+			i++;
+		}
+	}
 	else
 		arg_errors(1, "");
-//	ft_putstr("\033[30G");
-//	ft_putendl("hello");
 	return (0);
 }

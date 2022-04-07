@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/04 12:46:14 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/06 15:22:15 by pskytta          ###   ########.fr       */
+/*   Created: 2022/04/07 08:51:47 by pskytta           #+#    #+#             */
+/*   Updated: 2022/04/07 16:07:30 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	action_check(int n)
 }
 
 /*
-** Funtion checks if the second argument (argv[1]) is 'ls'. In case it is 
+** Funtion checks if the second argument (argv[1]) is 'ls'. In case it is
 ** not ls the function exits through arg_error() function. If no string it
 ** returns and main outputs usage error message.
 */
@@ -52,7 +52,6 @@ int	argument_check(int count, char **str)
 
 	ls_check(str[1]);
 	action = action_check(count);
-	
+
 	return (action);
 }
-

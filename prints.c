@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:52:31 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/06 14:56:24 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/07 10:53:58 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ void	print_2ws(const char *str)
 	ft_putstr(str);
 	ft_putstr("\033[0m");
 	ft_putstr("  ");
+}
+
+void	print_col(const char *str)
+{
+	ft_putstr("\033[12A");
+	ft_putstr("\033[16C");
+	ft_putendl(str);
+	//ft_putstr("  ");
 }
 
 void	print_double(char **str)
