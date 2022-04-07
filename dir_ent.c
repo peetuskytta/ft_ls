@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:49:13 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/07 17:29:31 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/07 19:59:35 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_data	*list_files(const char *dirname, int i, int count)
 	{
 			f[i].f_name = ft_strdup(entity->d_name);
 			f[i].type = entity->d_type;
-			f[i].name_len = entity->d_namlen;
+			f[i].name_len = ft_strlen(entity->d_name);
 			f[i].count = count;
 			entity = readdir(dir);
 			i++;
