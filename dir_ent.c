@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:49:13 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/07 19:59:35 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/08 01:10:50 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,44 +34,34 @@ t_data	*list_files(const char *dirname, int i, int count)
 {
 	DIR				*dir;
 	struct dirent	*entity;
+	t_data			*file;
 
 	count = file_count(dirname, count);
-	t_data	*f = malloc(count * sizeof(t_data));
+	file = malloc(count * sizeof(t_data));
 	dir = opendir(dirname);
 	if (dir == NULL)
 		return (NULL);
 	entity = readdir(dir);
 	while (entity != NULL)
 	{
-			f[i].f_name = ft_strdup(entity->d_name);
-			f[i].type = entity->d_type;
-			f[i].name_len = ft_strlen(entity->d_name);
-			f[i].count = count;
+			file[i].f_name = ft_strdup(entity->d_name);
+			file[i].type = entity->d_type;
+			file[i].name_len = ft_strlen(entity->d_name);
+			file[i].count = count;
 			entity = readdir(dir);
 			i++;
 	}
 	closedir(dir);
-	return (f);
+	return (file);
 }
 int	main(int argc, char *argv[])
 {
-	int		*flags[5];
+	int		flags[5];
 	t_data	*ptr;
-	int		i;
 
-	i = 0;
 	ft_bzero(flags, 5);
-	if (argument_check(argc, argv) == 1)
-	{
-		ptr = list_files(".", 0, 0);
+	ptr = argument_check(argc, argv, flags);
+	ft_putendl(ptr[0].f_name);
 
-		while (i < ptr[0].count)
-		{
-			ft_putendl(ptr[i].f_name);
-			i++;
-		}
-	}
-	else
-		arg_errors(1, "");
 	return (0);
 }

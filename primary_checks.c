@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:51:47 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/07 16:07:30 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/08 01:15:42 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** Argument 1 is always the executable <./ft_ls>. If argument count n equals to
 ** 2 we know that there's only one command. If it is "ls" we continue.
 ** If n is 3 there are additional flags to the "ls" command. If n is larger than
-** 3 there are additional file/dirextory-names to be considered
+** 3 there are additional file/directory-names to be considered
 */
 int	action_check(int n)
 {
@@ -36,22 +36,63 @@ int	action_check(int n)
 ** not ls the function exits through arg_error() function. If no string it
 ** returns and main outputs usage error message.
 */
-void	ls_check(char *str)
+void	ls_check(char **str)
 {
-	if (str)
+	if (str[1])
 	{
-		if (ft_strcmp(str, "ls") != 0)
-			arg_errors(2, str);
+		if (ft_strcmp(str[1], "ls") != 0)
+			arg_errors(2, str[1]);
+	}
+	else
+	{
+		ft_putendl("wrong");
+		arg_errors(1, "");
 	}
 }
+/*
+** flags[5] = flags[l][a][r][R][t] and are initialized all to zero.
+** if a flag is found the corresponding position is changed to 1.
+*/
+void	flag_check(char **str, int *flags, int i)
+{
+	if (str[i][0] == '-' && ft_strlen(str[i]) == 2)
+	{
+		if (str[i][1] == 'l')
+			flags[0] = 1;
+		if (str[i][1] == 'a')
+			flags[1] = 1;
+		if (str[i][1] == 'r')
+			flags[2] = 1;
+		if (str[i][1] == 'R')
+			flags[3] = 1;
+		if (str[i][1] == 't')
+			flags[4] = 1;
+		else
+			return ;
+	}
+	arg_errors(3, "");
+}
 
-int	argument_check(int count, char **str)
+t_data	*argument_check(int count, char **str, int *flags)
 {
 	int		action;
-//	char	temp;
+	t_data	*ptr;
 
-	ls_check(str[1]);
+	ls_check(str);
 	action = action_check(count);
-
-	return (action);
+	if (action < 3)
+	{
+		if (action == 1)
+		{
+			ptr = list_files(".", 0, 0);
+			print_ls(ptr, 0);
+		}
+		if (action == 2)
+		{
+			flag_check(str, flags, 2);
+			if (flags[1] == 1)
+				print_ls_a(ptr, 0);
+		}
+	}
+	return (ptr);
 }
