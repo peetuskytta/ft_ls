@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:45:58 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/07 17:22:35 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/11 15:50:39 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_data	*list_files(const char *dirname, int i, int count);
 void	arg_errors(int n, char *str);
 void	ls_check(char *str);
 void	print_2ws(const char *str);
-void	print_col(const char *str);
-void	print_double(char **str);
+void	print_ls(t_data *to_print, int i);
 
 #endif

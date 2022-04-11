@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:49:13 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/07 19:59:35 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/11 15:50:36 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,14 @@ t_data	*list_files(const char *dirname, int i, int count)
 }
 int	main(int argc, char *argv[])
 {
-	int		*flags[5];
-	t_data	*ptr;
+	t_data	*arr_of_s;
 	int		i;
 
 	i = 0;
-	ft_bzero(flags, 5);
 	if (argument_check(argc, argv) == 1)
 	{
-		ptr = list_files(".", 0, 0);
-
-		while (i < ptr[0].count)
-		{
-			ft_putendl(ptr[i].f_name);
-			i++;
-		}
+		arr_of_s = list_files(".", 0, 0);
+		print_ls(arr_of_s, 0);
 	}
 	else
 		arg_errors(1, "");
