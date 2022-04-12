@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:45:58 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/12 15:51:02 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/12 21:50:42 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ int		argument_check(int count, char **str);
 int		file_and_directory_count(const char *dirname, int count);
 t_data	*list_files_and_directories(const char *dirname, int i, int count);
 void	error_prints(int n, char *str);
-void	ls_with_flags(t_data *arr_of_s, char **argv);
+void	ls_with_flags(t_data *arr_of_s, char **string);
 void	only_ls(t_data *arr_of_s);
 void	print_double(char **str);
+
+//void	bubble_sort_a_to_z(t_data *st, int size);
 
 #endif
