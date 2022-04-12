@@ -6,13 +6,13 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:49:13 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/11 15:50:36 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/12 15:50:02 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int	file_count(const char *dirname, int count)
+int	file_and_directory_count(const char *dirname, int count)
 {
 	DIR				*d;
 	struct dirent	*entity;
@@ -30,13 +30,15 @@ int	file_count(const char *dirname, int count)
 	return (count);
 }
 
-t_data	*list_files(const char *dirname, int i, int count)
+t_data	*list_files_and_directories(const char *dirname, int i, int count)
 {
 	DIR				*dir;
 	struct dirent	*entity;
 
-	count = file_count(dirname, count);
+	count = file_and_directory_count(dirname, count);
 	t_data	*f = malloc(count * sizeof(t_data));
+	if (f == NULL)
+		error_prints(4, "malloc failed in 'list_files_and_directories()'");
 	dir = opendir(dirname);
 	if (dir == NULL)
 		return (NULL);
@@ -53,18 +55,17 @@ t_data	*list_files(const char *dirname, int i, int count)
 	closedir(dir);
 	return (f);
 }
+
 int	main(int argc, char *argv[])
 {
 	t_data	*arr_of_s;
-	int		i;
 
-	i = 0;
+	arr_of_s = NULL;
 	if (argument_check(argc, argv) == 1)
-	{
-		arr_of_s = list_files(".", 0, 0);
-		print_ls(arr_of_s, 0);
-	}
+		only_ls(arr_of_s);
+	else if (argument_check(argc, argv) == 2)
+		ls_with_flags(arr_of_s, argv);
 	else
-		arg_errors(1, "");
+		error_prints(1, "usage: ./ft_ls <ls> <flags> <filename>");
 	return (0);
 }

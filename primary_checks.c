@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:51:47 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/07 16:07:30 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/12 15:50:24 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** If n is 3 there are additional flags to the "ls" command. If n is larger than
 ** 3 there are additional file/dirextory-names to be considered
 */
-int	action_check(int n)
+static int	action_check(int n)
 {
 	if (n == 2)
 		return (1);
@@ -36,22 +36,18 @@ int	action_check(int n)
 ** not ls the function exits through arg_error() function. If no string it
 ** returns and main outputs usage error message.
 */
-void	ls_check(char *str)
+static void	ls_check(char *str)
 {
 	if (str)
 	{
 		if (ft_strcmp(str, "ls") != 0)
-			arg_errors(2, str);
+			error_prints(2, str);
 	}
 }
 
+
 int	argument_check(int count, char **str)
 {
-	int		action;
-//	char	temp;
-
 	ls_check(str[1]);
-	action = action_check(count);
-
-	return (action);
+	return (action_check(count));
 }
