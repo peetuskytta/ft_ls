@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ls_no_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 15:09:14 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/12 13:40:47 by pskytta          ###   ########.fr       */
+/*   Created: 2022/04/12 14:03:28 by pskytta           #+#    #+#             */
+/*   Updated: 2022/04/13 08:09:28 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ls.h"
 
-char	*ft_strdup(const char *s1)
+static void	print_ls(t_data *to_print, int i)
 {
-	char	*dup;
+	while (i < to_print[0].count)
+	{
+		if (to_print[i].f_name[0] != '.')
+			ft_putendl(to_print[i].f_name);
+		i++;
+	}
+}
 
-	dup = (char *)malloc(ft_strlen(s1) + 1);
-	if (dup == NULL)
-		ft_error_print(4, "error: ft_strdup: malloc fail");
-	ft_strcpy(dup, s1);
-	return (dup);
+void	only_ls(t_data *arr_of_s)
+{
+	arr_of_s = list_files_and_directories(".", arr_of_s, 0, 0);
+	print_ls(arr_of_s, 0);
 }

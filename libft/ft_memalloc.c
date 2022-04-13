@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 11:05:37 by pskytta           #+#    #+#             */
-/*   Updated: 2021/12/20 16:28:53 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/12 13:32:05 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memalloc(size_t size)
 
 	ret = (void *)malloc(size);
 	if (ret == NULL)
-		return (NULL);
+		ft_error_print(4, "ft_memalloc: malloc failed");
 	ft_bzero(ret, size);
 	return (ret);
 }

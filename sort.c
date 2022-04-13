@@ -6,9 +6,10 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:53:43 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/07 20:24:36 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/13 08:21:21 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
+//void	bubble_sort_a_to_z(t_data *st, int size)

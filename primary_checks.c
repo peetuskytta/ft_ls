@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:51:47 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/08 01:15:42 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/13 08:19:25 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** If n is 3 there are additional flags to the "ls" command. If n is larger than
 ** 3 there are additional file/directory-names to be considered
 */
-int	action_check(int n)
+static int	action_check(int n)
 {
 	if (n == 2)
 		return (1);
@@ -32,16 +32,40 @@ int	action_check(int n)
 }
 
 /*
+** flags[5] = flags[l][a][r][R][t] and are initialized all to zero.
+** if a flag is found the corresponding position is changed to 1.
+*/
+/*void	flag_check(char **str, int *flags, int i)
+{
+	if (str[i][0] == '-' && ft_strlen(str[i]) == 2)
+	{
+		if (str[i][1] == 'l')
+			flags[0] = 1;
+		if (str[i][1] == 'a')
+			flags[1] = 1;
+		if (str[i][1] == 'r')
+			flags[2] = 1;
+		if (str[i][1] == 'R')
+			flags[3] = 1;
+		if (str[i][1] == 't')
+			flags[4] = 1;
+		else
+			return ;
+	}
+	error_prints(3, "");
+}*/
+
+/*
 ** Funtion checks if the second argument (argv[1]) is 'ls'. In case it is
 ** not ls the function exits through arg_error() function. If no string it
 ** returns and main outputs usage error message.
 */
-void	ls_check(char **str)
+static void	ls_check(char *str)
 {
 	if (str[1])
 	{
-		if (ft_strcmp(str[1], "ls") != 0)
-			arg_errors(2, str[1]);
+		if (ft_strcmp(str, "ls") != 0)
+			error_prints(2, str);
 	}
 	else
 	{
@@ -73,26 +97,9 @@ void	flag_check(char **str, int *flags, int i)
 	arg_errors(3, "");
 }
 
-t_data	*argument_check(int count, char **str, int *flags)
-{
-	int		action;
-	t_data	*ptr;
 
-	ls_check(str);
-	action = action_check(count);
-	if (action < 3)
-	{
-		if (action == 1)
-		{
-			ptr = list_files(".", 0, 0);
-			print_ls(ptr, 0);
-		}
-		if (action == 2)
-		{
-			flag_check(str, flags, 2);
-			if (flags[1] == 1)
-				print_ls_a(ptr, 0);
-		}
-	}
-	return (ptr);
+int	argument_check(int count, char **str)
+{
+	ls_check(str[1]);
+	return (action_check(count));
 }

@@ -6,16 +6,16 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:49:52 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/08 00:15:54 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/13 08:21:27 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	arg_errors(int n, char *str)
+void	error_prints(int n, char *str)
 {
 	if (n == 1)
-		ft_putendl("usage: ./ft_ls <ls> <flags> <filename>");
+		ft_putendl(str);
 	else if (n == 2)
 	{
 		ft_putstr("command not found: ");
@@ -23,5 +23,7 @@ void	arg_errors(int n, char *str)
 	}
 	else if (n == 3)
 		ft_putendl("wrong flag or no flags");
+	else if (n == 4)
+		ft_putendl(str);
 	exit(1);
 }

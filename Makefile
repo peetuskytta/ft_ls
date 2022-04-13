@@ -3,7 +3,12 @@ DEBUG_F := -g
 FLAGS := -Wall -Wextra -Werror
 
 NAME := ft_ls
-SOURCES := dir_ent.c error_handling.c primary_checks.c prints.c sort.c
+SOURCES := dir_ent.c \
+	error_handling.c \
+	primary_checks.c \
+	prints.c sort.c \
+	ls_no_flags.c \
+	ls_with_flags.c \
 
 OBJ := $(SOURCES:.c=.o)
 
