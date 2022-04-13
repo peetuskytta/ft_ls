@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:49:13 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/12 21:51:15 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/13 08:05:30 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	file_and_directory_count(const char *dirname, int count)
 ** the current directory to a an array of structs *f. No NULL check
 ** needed for ft_memalloc as it has inbuild exit in case malloc fails.
 */
-t_data	*list_files_and_directories(const char *dirname, int i, int count)
+t_data	*list_files_and_directories(const char *dirname, t_data *f, int i, int count)
 {
 	DIR				*dir;
 	struct dirent	*entity;
 
 	count = file_and_directory_count(dirname, count);
-	t_data	*f = ft_memalloc(count * sizeof(t_data));
+	f = ft_memalloc(count * sizeof(t_data));
 	dir = opendir(dirname);
 	if (dir == NULL)
 		return (NULL);

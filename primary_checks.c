@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:51:47 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/12 15:50:24 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/13 07:44:04 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,30 @@ static int	action_check(int n)
 	else
 		return (0);
 }
+
+/*
+** flags[5] = flags[l][a][r][R][t] and are initialized all to zero.
+** if a flag is found the corresponding position is changed to 1.
+*/
+/*void	flag_check(char **str, int *flags, int i)
+{
+	if (str[i][0] == '-' && ft_strlen(str[i]) == 2)
+	{
+		if (str[i][1] == 'l')
+			flags[0] = 1;
+		if (str[i][1] == 'a')
+			flags[1] = 1;
+		if (str[i][1] == 'r')
+			flags[2] = 1;
+		if (str[i][1] == 'R')
+			flags[3] = 1;
+		if (str[i][1] == 't')
+			flags[4] = 1;
+		else
+			return ;
+	}
+	error_prints(3, "");
+}*/
 
 /*
 ** Funtion checks if the second argument (argv[1]) is 'ls'. In case it is

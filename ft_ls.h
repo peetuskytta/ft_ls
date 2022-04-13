@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:45:58 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/12 21:50:42 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/13 08:05:53 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_data
 
 int		argument_check(int count, char **str);
 int		file_and_directory_count(const char *dirname, int count);
-t_data	*list_files_and_directories(const char *dirname, int i, int count);
+t_data	*list_files_and_directories(const char *dirname, t_data *f, int i, int count);
 void	error_prints(int n, char *str);
 void	ls_with_flags(t_data *arr_of_s, char **string);
 void	only_ls(t_data *arr_of_s);
