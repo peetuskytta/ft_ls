@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:49:13 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/13 08:20:45 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/14 11:00:07 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,36 +32,6 @@ int	file_and_directory_count(const char *dirname, int count)
 	}
 	closedir(d);
 	return (count);
-}
-
-/*
-** Function which opens a directory stream and reads each entry in
-** the current directory to a an array of structs *f. No NULL check
-** needed for ft_memalloc as it has inbuild exit in case malloc fails.
-*/
-t_data	*list_files_and_directories(const char *dirname, t_data *f, int i, int count)
-{
-	DIR				*dir;
-	struct dirent	*entity;
-	t_data			*file;
-
-	count = file_and_directory_count(dirname, count);
-	f = ft_memalloc(count * sizeof(t_data));
-	dir = opendir(dirname);
-	if (dir == NULL)
-		return (NULL);
-	entity = readdir(dir);
-	while (entity != NULL)
-	{
-			f[i].f_name = ft_strdup(entity->d_name);
-			f[i].type = entity->d_type;
-			f[i].name_len = ft_strlen(entity->d_name);
-			f[i].count = count;
-			entity = readdir(dir);
-			i++;
-	}
-	closedir(dir);
-	return (f);
 }
 
 int	main(int argc, char *argv[])

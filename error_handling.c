@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:49:52 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/13 08:21:27 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/14 07:43:10 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	error_prints(int n, char *str)
 		ft_putendl(str);
 	}
 	else if (n == 3)
-		ft_putendl("wrong flag or no flags");
+	{
+		ft_putstr("error: ");
+		ft_putendl(str);
+	}
 	else if (n == 4)
 		ft_putendl(str);
 	exit(1);

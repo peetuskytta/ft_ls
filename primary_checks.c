@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:51:47 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/13 08:26:55 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/14 08:04:11 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,6 @@ static void	ls_check(char *str)
 	{
 		if (ft_strcmp(str, "ls") != 0)
 			error_prints(2, str);
-	}
-	else
-	{
-		ft_putendl("wrong");
-		arg_errors(1, "");
 	}
 }
 
