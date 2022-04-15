@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:51:47 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/14 08:04:11 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/15 13:09:09 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** Argument 1 is always the executable <./ft_ls>. If argument count n equals to
 ** 2 we know that there's only one command. If it is "ls" we continue.
 ** If n is 3 there are additional flags to the "ls" command. If n is larger than
-** 3 there are additional file/directory-names to be considered
+** 3 there are additional file/dirextory-names to be considered
 */
 static int	action_check(int n)
 {
@@ -35,25 +35,41 @@ static int	action_check(int n)
 ** flags[5] = flags[l][a][r][R][t] and are initialized all to zero.
 ** if a flag is found the corresponding position is changed to 1.
 */
-/*void	flag_check(char **str, int *flags, int i)
+void	flag_save(char *c, t_data *s_arr, int i)
 {
-	if (str[i][0] == '-' && ft_strlen(str[i]) == 2)
+	if (c[i] == 'l')
+		s_arr->flags[0] = 1;
+	else if (c[i] == 'a')
+		s_arr->flags[1] = 1;
+	else if (c[i] == 'r')
+		s_arr->flags[2] = 1;
+	else if (c[i] == 'R')
+		s_arr->flags[3] = 1;
+	else if (c[i] == 't')
+		s_arr->flags[4] = 1;
+	else
+		error_prints(5, &c[i]);
+}
+
+t_data	*flag_check(t_data *s_arr, char *str)
+{
+	int i;
+
+	i = 1;
+	if (ft_strlen(str) == 2)
 	{
-		if (str[i][1] == 'l')
-			flags[0] = 1;
-		if (str[i][1] == 'a')
-			flags[1] = 1;
-		if (str[i][1] == 'r')
-			flags[2] = 1;
-		if (str[i][1] == 'R')
-			flags[3] = 1;
-		if (str[i][1] == 't')
-			flags[4] = 1;
-		else
-			return ;
+		flag_save(str, s_arr, 1);
 	}
-	error_prints(3, "");
-}*/
+	if (ft_strlen(str) > 2)
+	{
+		while (str[i] != '\0')
+		{
+			flag_save(str, s_arr, i);
+			i++;
+		}
+	}
+	return (s_arr);
+}
 
 /*
 ** Funtion checks if the second argument (argv[1]) is 'ls'. In case it is
@@ -62,7 +78,7 @@ static int	action_check(int n)
 */
 static void	ls_check(char *str)
 {
-	if (str[1])
+	if (str)
 	{
 		if (ft_strcmp(str, "ls") != 0)
 			error_prints(2, str);

@@ -10,7 +10,6 @@ SOURCES := dir_ent.c \
 	sort.c \
 	ls_no_flags.c \
 	ls_with_flags.c \
-	ls_recursive.c \
 
 OBJ := $(SOURCES:.c=.o)
 

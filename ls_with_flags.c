@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:29:54 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/14 21:20:21 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/15 17:42:53 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	print_ls_a(t_data *to_print, int i)
 ** the current directory to a an array of structs *f. No NULL check
 ** needed for ft_memalloc as it has inbuild exit in case malloc fails.
 */
-static t_data	*ls_list_flags(const char *dirname, t_data *f, int i, int count)
+static t_data	*ls_extra(const char *dirname, t_data *f, int i, int count)
 {
 	DIR				*dir;
 	struct dirent	*entity;
@@ -57,10 +57,38 @@ static t_data	*ls_list_flags(const char *dirname, t_data *f, int i, int count)
 	return (f);
 }
 
-void	ls_with_flags(t_data *arr_of_s, char **string)
+t_data	*store_arguments(t_data *to_store, char **str, int i)
 {
-	arr_of_s = ls_list_flags(".", arr_of_s, 0, 0);
+	int	index;
+
+	index = 0;
+	while (str[i] != NULL)
+	{
+		if (str[i][0] == '-')
+			to_store = flag_check(to_store, str[i]);
+		else
+		{
+			to_store->list[index] = ft_strdup(str[i]);
+			index++;
+		}
+		i++;
+	}
+	return (to_store);
+}
+
+void	ls_with_extra(t_data *arr_of_s, char **string)
+{
+	int	i = 0;
+
+	arr_of_s = store_arguments(arr_of_s, string, 2);
+	arr_of_s = ls_extra(".", arr_of_s, 0, 0);
 	arr_of_s = a_to_z_sort(arr_of_s, arr_of_s->count);
+	while (i < 5)
+	{
+		ft_putnbr(arr_of_s->flags[i]);
+		ft_putendl("");
+		i++;
+	}
 	print_ls_a(arr_of_s, 0);
-	ft_putendl(string[0]);
+	//ft_putendl("");
 }
