@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:29:54 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/15 17:42:53 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/19 18:32:18 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ static void	print_ls_a(t_data *to_print, int i)
 ** the current directory to a an array of structs *f. No NULL check
 ** needed for ft_memalloc as it has inbuild exit in case malloc fails.
 */
-static t_data	*ls_extra(const char *dirname, t_data *f, int i, int count)
+t_data	*ls_extra(const char *dirname, t_data *f, int i)
 {
 	DIR				*dir;
 	struct dirent	*entity;
+	int				count;
 
-	count = file_and_directory_count(dirname, count);
+	count = file_and_directory_count(dirname, 0);
 	f = ft_memalloc(count * sizeof(t_data));
 	dir = opendir(dirname);
 	if (dir == NULL)
@@ -57,38 +58,43 @@ static t_data	*ls_extra(const char *dirname, t_data *f, int i, int count)
 	return (f);
 }
 
-t_data	*store_arguments(t_data *to_store, char **str, int i)
+t_args	*store_arguments(t_args *to_save, char **str, int i, int nb)
 {
-	int	index;
+	int		index;
+	t_args	*tmp;
 
+	tmp = to_save;
 	index = 0;
 	while (str[i] != NULL)
 	{
 		if (str[i][0] == '-')
-			to_store = flag_check(to_store, str[i]);
+		{
+			to_save = flag_check(tmp, str[i]);
+		}
 		else
 		{
-			to_store->list[index] = ft_strdup(str[i]);
+			to_save->list = (char **)malloc(sizeof(char*) * nb - 2);
+			to_save->list[index] = ft_strdup(str[i]);
 			index++;
 		}
 		i++;
 	}
-	return (to_store);
+	//to_save->list[nb + 1] = NULL;
+	//to_save->count = index;
+	//print_double(to_save->list);
+	return (to_save);
 }
 
-void	ls_with_extra(t_data *arr_of_s, char **string)
+void	ls_with_extra(t_data *arr_of_s, t_args *args, char **str, int nb)
 {
-	int	i = 0;
+	t_args	*tmp;
 
-	arr_of_s = store_arguments(arr_of_s, string, 2);
-	arr_of_s = ls_extra(".", arr_of_s, 0, 0);
+	tmp = store_arguments(args, str, 2, nb);
+	ft_putendl("here 2.1");
+	print_double(tmp->list);
+	arr_of_s = ls_extra(".", arr_of_s, 0);
 	arr_of_s = a_to_z_sort(arr_of_s, arr_of_s->count);
-	while (i < 5)
-	{
-		ft_putnbr(arr_of_s->flags[i]);
-		ft_putendl("");
-		i++;
-	}
+
 	print_ls_a(arr_of_s, 0);
 	//ft_putendl("");
 }

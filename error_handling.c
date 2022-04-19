@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:49:52 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/15 09:39:47 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/19 14:42:28 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ void	ch_error(char c)
 	ft_putstr("ls: illegal option -- ");
 	ft_putchar(c);
 	ft_putendl("");
+	ft_putendl("usage: ls [-larRt] [file ...]");
 }

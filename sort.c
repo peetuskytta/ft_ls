@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:53:43 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/15 09:01:14 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/19 16:05:45 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ t_data	*a_to_z_sort(t_data *to_sort, int n)
 	return (to_sort);
 }
 
-t_data	*sort_driver(t_data *to_sort)
+t_data	*sort_driver(t_data *to_sort, t_args *args)
 {
-	if (to_sort->flags[1] == 1)
+	if (args->flags[1] == 1)
 		return (a_to_z_sort(to_sort, to_sort->count));
+	else if (args->flags[2] == 1)
+		return(to_sort);
 	else
 	{
 		ft_putendl("sort by other means");

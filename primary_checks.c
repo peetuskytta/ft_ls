@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:51:47 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/15 13:09:09 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/19 18:29:17 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ static int	action_check(int n)
 {
 	if (n == 2)
 		return (1);
-	if (n == 3)
+	if (n > 2)
 		return (2);
-	if (n > 3)
-		return (3);
 	else
 		return (0);
 }
@@ -35,40 +33,40 @@ static int	action_check(int n)
 ** flags[5] = flags[l][a][r][R][t] and are initialized all to zero.
 ** if a flag is found the corresponding position is changed to 1.
 */
-void	flag_save(char *c, t_data *s_arr, int i)
+void	flag_save(char c, t_args *arguments)
 {
-	if (c[i] == 'l')
-		s_arr->flags[0] = 1;
-	else if (c[i] == 'a')
-		s_arr->flags[1] = 1;
-	else if (c[i] == 'r')
-		s_arr->flags[2] = 1;
-	else if (c[i] == 'R')
-		s_arr->flags[3] = 1;
-	else if (c[i] == 't')
-		s_arr->flags[4] = 1;
+	if (c == 'l')
+		arguments->flags[0] = 1;
+	else if (c == 'a')
+		arguments->flags[1] = 1;
+	else if (c == 'r')
+		arguments->flags[2] = 1;
+	else if (c == 'R')
+		arguments->flags[3] = 1;
+	else if (c == 't')
+		arguments->flags[4] = 1;
 	else
-		error_prints(5, &c[i]);
+		error_prints(5, &c);
 }
 
-t_data	*flag_check(t_data *s_arr, char *str)
+t_args	*flag_check(t_args *args, char *str)
 {
-	int i;
+	int 	i;
+	size_t	len;
 
 	i = 1;
-	if (ft_strlen(str) == 2)
-	{
-		flag_save(str, s_arr, 1);
-	}
-	if (ft_strlen(str) > 2)
+	len = ft_strlen(str);
+	if (len == 2)
+		flag_save(str[1], args);
+	if (len > 2)
 	{
 		while (str[i] != '\0')
 		{
-			flag_save(str, s_arr, i);
+			flag_save(str[i], args);
 			i++;
 		}
 	}
-	return (s_arr);
+	return (args);
 }
 
 /*

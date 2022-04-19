@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:03:28 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/15 11:30:04 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/19 15:49:32 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	print_ls(t_data *to_print, int i)
 ** the current directory to a an array of structs *f. No NULL check
 ** needed for ft_memalloc as it has inbuild exit in case malloc fails.
 */
-static t_data	*simple_ls(const char *dirname, t_data *f, int i, int count)
+t_data	*simple_ls(const char *dirname, t_data *f, int i, int count)
 {
 	DIR				*dir;
 	struct dirent	*entity;
