@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:49:13 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/19 18:20:23 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/20 19:24:32 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,26 @@ int	file_and_directory_count(const char *dirname, int count)
 int	main(int argc, char *argv[])
 {
 	t_data	*arr_of_s;
-	t_args	*args_flags;
 
 	arr_of_s = ft_memalloc(sizeof(t_data));
-	args_flags = ft_memalloc(sizeof(t_args));
 	if (argument_check(argc, argv) == 1)
 	{
-		only_ls(arr_of_s);
-		//cleaning function after the print is done.
+		arr_of_s = only_ls(arr_of_s);
+		print_ls(arr_of_s, 0);
 	}
 	else if (argument_check(argc, argv) == 2)
 	{
-		ls_with_extra(arr_of_s, args_flags, argv, argc);
-		//cleaning function after the print is done.
+		ls_with_extra(arr_of_s, argv);
 	}
 	else
 		error_prints(1, "usage: ./ft_ls <ls> <flags> <filename>");
+
+	int	i = 0;
+	while (i < 5)
+	{
+		ft_putnbr_endl(arr_of_s->flags[i]);
+		i++;
+	}
+	free(arr_of_s);
 	return (0);
 }

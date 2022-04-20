@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:51:47 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/19 18:29:17 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/20 11:22:25 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	action_check(int n)
 ** flags[5] = flags[l][a][r][R][t] and are initialized all to zero.
 ** if a flag is found the corresponding position is changed to 1.
 */
-void	flag_save(char c, t_args *arguments)
+void	flag_save(char c, t_data *arguments)
 {
 	if (c == 'l')
 		arguments->flags[0] = 1;
@@ -49,7 +49,7 @@ void	flag_save(char c, t_args *arguments)
 		error_prints(5, &c);
 }
 
-t_args	*flag_check(t_args *args, char *str)
+t_data	*flag_check(t_data *arguments, char *str)
 {
 	int 	i;
 	size_t	len;
@@ -57,16 +57,16 @@ t_args	*flag_check(t_args *args, char *str)
 	i = 1;
 	len = ft_strlen(str);
 	if (len == 2)
-		flag_save(str[1], args);
+		flag_save(str[1], arguments);
 	if (len > 2)
 	{
 		while (str[i] != '\0')
 		{
-			flag_save(str[i], args);
+			flag_save(str[i], arguments);
 			i++;
 		}
 	}
-	return (args);
+	return (arguments);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:29:54 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/19 18:32:18 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/20 19:24:59 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** current directory. TO-DO: ADD FLAG DETECTION AND CALLS ACCORDINGLY.
 **
 */
-static void	print_ls_a(t_data *to_print, int i)
+void	print_ls_a(t_data *to_print, int i)
 {
 	while (i < to_print[0].count)
 	{
@@ -58,43 +58,33 @@ t_data	*ls_extra(const char *dirname, t_data *f, int i)
 	return (f);
 }
 
-t_args	*store_arguments(t_args *to_save, char **str, int i, int nb)
+t_data	*store_arguments(t_data *to_save, char **str, int i)
 {
-	int		index;
-	t_args	*tmp;
+	t_data	*tmp;
 
 	tmp = to_save;
-	index = 0;
 	while (str[i] != NULL)
 	{
 		if (str[i][0] == '-')
-		{
 			to_save = flag_check(tmp, str[i]);
-		}
-		else
+		/*else
 		{
-			to_save->list = (char **)malloc(sizeof(char*) * nb - 2);
-			to_save->list[index] = ft_strdup(str[i]);
-			index++;
-		}
+			to_save->list = (char**)malloc(sizeof(char*);
+		}*/
 		i++;
+
 	}
-	//to_save->list[nb + 1] = NULL;
-	//to_save->count = index;
-	//print_double(to_save->list);
+	to_save->flag_args = i;
+	ft_putnbr_endl(to_save->flag_args);
 	return (to_save);
 }
 
-void	ls_with_extra(t_data *arr_of_s, t_args *args, char **str, int nb)
-{
-	t_args	*tmp;
 
-	tmp = store_arguments(args, str, 2, nb);
-	ft_putendl("here 2.1");
-	print_double(tmp->list);
+void	ls_with_extra(t_data *arr_of_s, char **str)
+{
+	arr_of_s = store_arguments(arr_of_s, str, 2);
 	arr_of_s = ls_extra(".", arr_of_s, 0);
 	arr_of_s = a_to_z_sort(arr_of_s, arr_of_s->count);
-
+	ft_putnbr_endl(arr_of_s->flag_args);
 	print_ls_a(arr_of_s, 0);
-	//ft_putendl("");
 }

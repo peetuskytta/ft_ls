@@ -6,13 +6,13 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:03:28 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/19 15:49:32 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/20 11:01:42 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void	print_ls(t_data *to_print, int i)
+void	print_ls(t_data *to_print, int i)
 {
 	while (i < to_print[0].count)
 	{
@@ -56,9 +56,10 @@ t_data	*simple_ls(const char *dirname, t_data *f, int i, int count)
 	return (f);
 }
 
-void	only_ls(t_data *arr_of_s)
+t_data	*only_ls(t_data *arr_of_s)
 {
 	arr_of_s = simple_ls(".", arr_of_s, 0, 0);
 	arr_of_s = a_to_z_sort(arr_of_s, arr_of_s->count);
-	print_ls(arr_of_s, 0);
+	//print_ls(arr_of_s, 0);
+	return (arr_of_s);
 }
