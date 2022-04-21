@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:03:28 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/20 11:01:42 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/04/21 12:35:21 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	print_ls(t_data *to_print, int i)
 		i++;
 	}
 	ft_putendl("");
-
 }
 
 /*
@@ -32,20 +31,23 @@ void	print_ls(t_data *to_print, int i)
 ** the current directory to a an array of structs *f. No NULL check
 ** needed for ft_memalloc as it has inbuild exit in case malloc fails.
 */
-t_data	*simple_ls(const char *dirname, t_data *f, int i, int count)
+t_data	*simple_ls(const char *dirname, t_data *arr, int i)
 {
+	int				count;
 	DIR				*dir;
+	t_data			*f;
 	struct dirent	*entity;
 
-	count = file_and_directory_count(dirname, count);
+	count = file_and_directory_count(dirname, 0);
 	f = ft_memalloc(count * sizeof(t_data));
+	f = arr;
 	dir = opendir(dirname);
 	if (dir == NULL)
 		return (NULL);
 	entity = readdir(dir);
 	while (entity != NULL)
 	{
-		f[i].f_name = ft_strdup(entity->d_name);
+		ft_strcpy(f[i].f_name, entity->d_name);
 		f[i].type = entity->d_type;
 		f[i].name_len = ft_strlen(entity->d_name);
 		f[i].count = count;
@@ -58,8 +60,7 @@ t_data	*simple_ls(const char *dirname, t_data *f, int i, int count)
 
 t_data	*only_ls(t_data *arr_of_s)
 {
-	arr_of_s = simple_ls(".", arr_of_s, 0, 0);
+	arr_of_s = simple_ls(".", arr_of_s, 0);
 	arr_of_s = a_to_z_sort(arr_of_s, arr_of_s->count);
-	//print_ls(arr_of_s, 0);
 	return (arr_of_s);
 }

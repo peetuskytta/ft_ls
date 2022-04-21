@@ -21,7 +21,7 @@ t_data	*save_data(t_data *f, int i)
 	f[i].count = count;
 }
 
-t_data	*list_files_and_directories(const char *dirname, t_data *f, int i, int count)
+t_data	*list_files(const char *dirname, t_data *f, int i, int count)
 {
 	DIR				*dir;
 	struct dirent	*entity;
