@@ -11,6 +11,7 @@ SOURCES := ls_main.c \
 	ls_no_flags.c \
 	ls_with_flags.c \
 	ls_utility_functions_1.c \
+	ls_utility_functions_2.c \
 
 OBJ := $(SOURCES:.c=.o)
 
