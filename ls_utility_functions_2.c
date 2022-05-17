@@ -6,28 +6,43 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:02:55 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/16 15:24:12 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:53:38 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	check_access(t_data *to_check, int i)
+void	check_access(t_data *to_check, int i, char *path)
 {
+	t_data	*temp;
+
+	temp = ft_memalloc(sizeof(t_data));
 	while (i < to_check->count)
 	{
 		if (check_list(to_check[i].f_name, to_check->list) == 1 && \
 			to_check[i].type == DT_DIR)
 		{
+			path_maker(path, to_check[i].f_name);
 			if ((to_check[i].access) == -1)
+				print_ls_err(to_check[i].f_name);
+			else
 			{
-				ft_putstr("ls: ");
-				ft_putstr(to_check[i].f_name);
-				error_prints(1, ": Permissions denied");
+				print_filename(to_check[i].f_name);
+				only_ls(temp, path);
+				i++;
 			}
 		}
 		i++;
 	}
+	free(temp);
+}
+
+void	path_maker(char *start, char *name)
+{
+	ft_strclr(start);
+	ft_strcat(start, ".");
+	ft_strcat(start, "/");
+	ft_strcat(start, name);
 }
 
 int	check_list(char *name, char **list)

@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:29:54 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/16 14:43:41 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:52:43 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_data	*ls_extra(const char *dirname, t_data *arr, int i, int count)
 	{
 		ft_strcpy(f[i].f_name, entity->d_name);
 		f[i].type = entity->d_type;
+		f[i].name_len = ft_strlen(entity->d_name);
 		f[i].count = count;
 		access_right(entity->d_name, &f[i]);
 		entity = readdir(dir);
@@ -61,13 +62,16 @@ t_data	*ls_extra(const char *dirname, t_data *arr, int i, int count)
 /*
 ** Driver function when there are more than 2 arguments (argc).
 */
-void	ls_with_extra(t_data *arr_of_s, char **str)
+void	ls_with_extra(t_data *arr_of_s, char **str, const char *name)
 {
 	arr_of_s = store_arguments(arr_of_s, str);
-	arr_of_s = ls_extra(".", arr_of_s, 0, 0);
+	arr_of_s = ls_extra(name, arr_of_s, 0, 0);
 	arr_of_s = a_to_z_sort(arr_of_s, arr_of_s->count);
-	if (arr_of_s->flag_args == 0)
-		handle_files(arr_of_s, 0, 0);
+	if (arr_of_s->list[0] != NULL)
+	{
+		handle_arguments(arr_of_s, 0, 0);
+		check_access(arr_of_s, 0, arr_of_s->path);
+	}
 	else
 		print_ls_a(arr_of_s, 0);
 }

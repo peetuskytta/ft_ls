@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:03:28 by pskytta           #+#    #+#             */
-/*   Updated: 2022/04/21 12:35:21 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:44:40 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ t_data	*simple_ls(const char *dirname, t_data *arr, int i)
 	return (f);
 }
 
-t_data	*only_ls(t_data *arr_of_s)
+void	only_ls(t_data *arr_of_s, char *name)
 {
-	arr_of_s = simple_ls(".", arr_of_s, 0);
+	arr_of_s = simple_ls(name, arr_of_s, 0);
 	arr_of_s = a_to_z_sort(arr_of_s, arr_of_s->count);
-	return (arr_of_s);
+	print_ls(arr_of_s, 0);
 }

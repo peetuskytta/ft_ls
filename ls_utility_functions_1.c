@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 15:45:29 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/16 15:23:46 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:48:48 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,28 +70,27 @@ t_data	*store_rest(t_data *to_save, char **str, int i)
 	return (to_save);
 }
 
-void	handle_files(t_data *to_print, int i, int index)
+void	handle_arguments(t_data *to_print, int i, int index)
 {
-	check_access(to_print, 0);
 	while (to_print->list[i] != NULL)
 	{
 		while (index < to_print[0].count)
 		{
-			if (ft_strcmp(to_print[index].f_name, to_print->list[i]) == 0 && \
-				to_print[index].access != -1)
+			if (to_print[index].type != DT_DIR)
 			{
-				ft_putstr(to_print[index].f_name);
-				ft_putstr("  ");
-				index = 0;
-				i++;
-				if (to_print->list[i] == NULL)
-					return ;
+				if (ft_strcmp(to_print->list[i], to_print[index].f_name) == 0)
+				{
+					ft_putstr(to_print[index].f_name);
+					ft_putstr("  ");
+					index = 0;
+					i++;
+					if (to_print->list[i] == NULL)
+						return ;
+				}
 			}
 			index++;
-			/*ft_putnbr_endl(i);
-			ft_putnbr_endl(index);
-			ft_putendl(to_print[index].f_name);*/
 		}
 		i++;
 	}
+	ft_putendl("");
 }
