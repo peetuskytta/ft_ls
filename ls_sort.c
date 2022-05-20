@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:53:43 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/17 15:52:50 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/18 15:15:01 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,28 @@ t_data	*a_to_z_sort(t_data *to_sort, int n)
 		i++;
 	}
 	return (to_sort);
+}
+
+void	argument_sort(char **list, int n)
+{
+	int		i;
+	int		j;
+	char	*temp;
+
+	i = 0;
+	while (i < n - 1)
+	{
+		j = i + 1;
+		while (j < n)
+		{
+			if (ft_strcmp(list[i], list[j]) > 0)
+			{
+				temp = list[i];
+				list[i] = list[j];
+				list[j] = temp;
+			}
+			j++;
+		}
+		i++;
+	}
 }

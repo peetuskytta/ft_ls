@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:29:54 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/17 15:52:43 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/20 16:36:03 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	print_ls_a(t_data *to_print, int i)
 	while (i < to_print[0].count)
 	{
 		ft_putstr(to_print[i].f_name);
-		ft_putstr("  ");
+		if (to_print[0].count != i + 1)
+			ft_putstr("  ");
 		i++;
 	}
+	ft_putendl("");
 }
 
 /*
@@ -48,30 +50,36 @@ t_data	*ls_extra(const char *dirname, t_data *arr, int i, int count)
 	while (entity != NULL)
 	{
 		ft_strcpy(f[i].f_name, entity->d_name);
-		f[i].type = entity->d_type;
-		f[i].name_len = ft_strlen(entity->d_name);
 		f[i].count = count;
-		access_right(entity->d_name, &f[i]);
 		entity = readdir(dir);
 		i++;
 	}
 	closedir(dir);
+	dot_file_count(arr, 0);
 	return (f);
 }
 
 /*
 ** Driver function when there are more than 2 arguments (argc).
 */
-void	ls_with_extra(t_data *arr_of_s, char **str, const char *name)
+void	ls_with_extra(t_data *arr, char **str, const char *name)
 {
-	arr_of_s = store_arguments(arr_of_s, str);
-	arr_of_s = ls_extra(name, arr_of_s, 0, 0);
-	arr_of_s = a_to_z_sort(arr_of_s, arr_of_s->count);
-	if (arr_of_s->list[0] != NULL)
+	arr = store_arguments(arr, str);
+	if (arr->list[0] != NULL)
 	{
-		handle_arguments(arr_of_s, 0, 0);
-		check_access(arr_of_s, 0, arr_of_s->path);
+		exist_check(arr, 0);
+		check_dir_access(arr, 0, arr->path);
 	}
 	else
-		print_ls_a(arr_of_s, 0);
+	{
+		arr = a_to_z_sort(arr, arr->count);
+		arr = ls_extra(name, arr, 0, 0);
+		print_ls_a(arr, 0);
+	}
+}
+
+void	exist_check(t_data *to_check, int i)
+{
+	print_nonexist(to_check, i);
+	print_exists(to_check, i);
 }

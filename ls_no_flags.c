@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:03:28 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/17 15:44:40 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/20 16:33:06 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	print_ls(t_data *to_print, int i)
 {
-	while (i < to_print[0].count)
+	while (i < to_print->count)
 	{
 		if (to_print[i].f_name[0] != '.')
 		{
 			ft_putstr(to_print[i].f_name);
-			ft_putstr("  ");
+			if (to_print->count >= i + 1)
+				ft_putstr("  ");
 		}
 		i++;
 	}
@@ -48,13 +49,12 @@ t_data	*simple_ls(const char *dirname, t_data *arr, int i)
 	while (entity != NULL)
 	{
 		ft_strcpy(f[i].f_name, entity->d_name);
-		f[i].type = entity->d_type;
-		f[i].name_len = ft_strlen(entity->d_name);
 		f[i].count = count;
 		entity = readdir(dir);
 		i++;
 	}
 	closedir(dir);
+	dot_file_count(arr, 0);
 	return (f);
 }
 
