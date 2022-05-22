@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:02:55 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/20 16:35:42 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/22 19:27:04 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_dir_access(t_data *arr, int i, char *path)
 			if (arr->list[i + 1] != NULL)
 				ft_putendl("");
 		}
-		if (!(arr->info.st_mode & R_OK))
+		if (!(arr->info.st_mode & R_OK) && arr->info.st_mode & S_IFDIR)
 			print_dir_access_err(arr->list[i], arr->arg_count);
 		i++;
 	}
@@ -49,7 +49,7 @@ void	path_maker(char *start, char *name)
 	ft_strcat(start, name);
 }
 
-int	check_dirname(char *name, char **list)
+/*int	check_dirname(char *name, char **list)
 {
 	int	i;
 
@@ -62,4 +62,4 @@ int	check_dirname(char *name, char **list)
 			i++;
 	}
 	return (0);
-}
+}*/

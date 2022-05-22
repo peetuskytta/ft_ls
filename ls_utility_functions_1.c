@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 15:45:29 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/20 16:35:35 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/22 19:28:58 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ t_data	*store_rest(t_data *to_save, char **str, int i)
 		i++;
 	}
 	to_save->list[index] = NULL;
-	argument_sort(to_save->list, to_save->arg_count);
+	//if (to_save->arg_count > 2)
+	//	argument_sort(to_save->list, to_save->arg_count);
 	return (to_save);
 }
 
