@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:45:58 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/23 14:57:56 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/23 15:23:20 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_data
 	int			flag_args;
 	int			start;
 	int			count;
+	int			size;
+	int			hd_count;
 	size_t		len;
 	int			arg_count;
 	char		**list;
@@ -46,9 +48,9 @@ t_data	*store_rest(t_data *save, char **str, int i);
 void	argument_sort(char **list, int n);
 void	ch_error(char c);
 void	check_dir_access(t_data *arr, int i, char *path);
+void	check_file_type(int mode, char *str);
 void	check_grp(int mode, char *str);
 void	check_oth(int mode, char *str);
-void	check_rights(struct stat *stats);
 void	check_usr(int mode, char *str);
 void	dot_file_count(t_data *arr, int i);
 void	error_prints(int n, char *str);
@@ -65,5 +67,6 @@ void	print_long(t_data *arr, int i);
 void	print_ls(t_data *to_print, int i);
 void	print_ls_a(t_data *to_print, int i);
 void	print_nonexist(t_data *to_print, int i);
+void	print_rights(struct stat *stats);
 
 #endif
