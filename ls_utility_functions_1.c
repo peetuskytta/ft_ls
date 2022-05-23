@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 15:45:29 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/22 19:28:58 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/23 14:03:27 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,47 +34,47 @@ int	file_and_directory_count(const char *dirname, int count)
 	return (count);
 }
 
-t_data	*store_flags(t_data *to_save, char **str, int i)
+t_data	*store_flags(t_data *save, char **str, int i)
 {
 	while (str[i] != NULL)
 	{
 		if (str[i][0] == '-')
 		{
-			to_save = flag_check(to_save, str[i]);
-			to_save->flag_args++;
+			save = flag_check(save, str[i]);
+			save->flag_args++;
 			i++;
 		}
 		else
-			return (to_save);
+			return (save);
 	}
-	return (to_save);
+	return (save);
 }
 
-t_data	*store_rest(t_data *to_save, char **str, int i)
+t_data	*store_rest(t_data *save, char **str, int i)
 {
 	int		index;
 	int		nb;
 
 	if (str[i - 1] == NULL)
-		return (to_save);
-	nb = to_save->arg_count;
+		return (save);
+	nb = save->arg_count;
 	index = 0;
-	to_save->list = (char **)malloc(sizeof(char *) * nb + 1);
+	save->list = (char **)malloc(sizeof(char *) * nb + 1);
 	while (str[i] != NULL)
 	{
-		to_save->list[index] = ft_strdup(str[i]);
+		save->list[index] = ft_strdup(str[i]);
 		index++;
 		i++;
 	}
-	to_save->list[index] = NULL;
-	//if (to_save->arg_count > 2)
-	//	argument_sort(to_save->list, to_save->arg_count);
-	return (to_save);
+	save->list[index] = NULL;
+	if (save->arg_count > 2)
+		argument_sort(save->list, save->arg_count - save->flag_args);
+	return (save);
 }
 
 void	dot_file_count(t_data *arr, int i)
 {
-	arr->start = -1;
+	arr->start = 0;
 	while (i < arr->count)
 	{
 		if (arr[i].f_name[0] == '.')

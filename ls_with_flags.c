@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:29:54 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/20 16:36:03 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/23 13:54:57 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_ls_a(t_data *to_print, int i)
 ** the current directory to a an array of structs *f. No NULL check
 ** needed for ft_memalloc as it has inbuild exit in case malloc fails.
 */
-t_data	*ls_extra(const char *dirname, t_data *arr, int i, int count)
+t_data	*dir_stream(const char *dirname, t_data *arr, int i, int count)
 {
 	DIR				*dir;
 	t_data			*f;
@@ -51,6 +51,8 @@ t_data	*ls_extra(const char *dirname, t_data *arr, int i, int count)
 	{
 		ft_strcpy(f[i].f_name, entity->d_name);
 		f[i].count = count;
+		f[i].len = ft_strlen(f[i].f_name);
+		stat(f[i].f_name, &f[i].info);
 		entity = readdir(dir);
 		i++;
 	}
@@ -72,9 +74,12 @@ void	ls_with_extra(t_data *arr, char **str, const char *name)
 	}
 	else
 	{
+		arr = dir_stream(name, arr, 0, 0);
 		arr = a_to_z_sort(arr, arr->count);
-		arr = ls_extra(name, arr, 0, 0);
-		print_ls_a(arr, 0);
+		if (arr->flags[0] == 1)
+			print_long(arr, 0);
+		else
+			print_ls_a(arr, 0);
 	}
 }
 

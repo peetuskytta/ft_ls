@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:03:28 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/22 19:29:44 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/23 12:18:31 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,40 +27,9 @@ void	print_ls(t_data *to_print, int i)
 	ft_putendl("");
 }
 
-/*
-** Function which opens a directory stream and reads each entry in
-** the current directory to a an array of structs *f. No NULL check
-** needed for ft_memalloc as it has inbuild exit in case malloc fails.
-*/
-t_data	*simple_ls(const char *dirname, t_data *arr, int i)
+void	ls_w_flags(t_data *arr_of_s, char *name)
 {
-	int				count;
-	DIR				*dir;
-	t_data			*f;
-	struct dirent	*entity;
-
-	count = file_and_directory_count(dirname, 0);
-	f = ft_memalloc(count * sizeof(t_data));
-	f = arr;
-	dir = opendir(dirname);
-	if (dir == NULL)
-		return (NULL);
-	entity = readdir(dir);
-	while (entity != NULL)
-	{
-		ft_strcpy(f[i].f_name, entity->d_name);
-		f[i].count = count;
-		entity = readdir(dir);
-		i++;
-	}
-	closedir(dir);
-	dot_file_count(arr, 0);
-	return (f);
-}
-
-void	only_ls(t_data *arr_of_s, char *name)
-{
-	arr_of_s = simple_ls(name, arr_of_s, 0);
+	arr_of_s = dir_stream(name, arr_of_s, 0, 0);
 	arr_of_s = a_to_z_sort(arr_of_s, arr_of_s->count);
 	print_ls(arr_of_s, 0);
 }

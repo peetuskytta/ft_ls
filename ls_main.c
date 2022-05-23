@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:49:13 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/22 19:32:52 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/23 11:49:58 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char *argv[])
 	arr_of_s = ft_memalloc(sizeof(t_data));
 	arr_of_s->arg_count = argc - 2;
 	if (argument_check(argc, argv) == 1)
-		only_ls(arr_of_s, ".");
+		ls_w_flags(arr_of_s, ".");
 	else if (argument_check(argc, argv) == 2)
 		ls_with_extra(arr_of_s, argv, ".");
 	else
