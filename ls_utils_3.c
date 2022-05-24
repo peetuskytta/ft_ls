@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 15:09:01 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/23 15:32:28 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/24 09:26:06 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,6 @@ void	check_file_type(int mode, char *str)
 {
 	if (mode & S_IFDIR)
 		str[0] = 'd';
+	/*if (mode & S_IFLNK)
+		str[0] = 'l';*/
 }

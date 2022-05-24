@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:45:58 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/24 09:06:59 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/24 11:34:34 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_data
 }	t_data;
 
 void	sort_by_flag(t_data *arr);
-t_data	*reverse_order(t_data *arr, int n);
+void	reverse_order(t_data *arr, int n);
 int		argument_check(int count, char **str);
 int		check_dirname(char *name, char **list);
 int		file_and_directory_count(const char *dirname, int count);
