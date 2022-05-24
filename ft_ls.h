@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:45:58 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/23 15:23:20 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/24 09:06:59 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_data
 	int			start;
 	int			count;
 	int			size;
+	int			padding;
 	int			hd_count;
 	size_t		len;
 	int			arg_count;
@@ -36,10 +37,12 @@ typedef struct s_data
 	struct stat	info;
 }	t_data;
 
+void	sort_by_flag(t_data *arr);
+t_data	*reverse_order(t_data *arr, int n);
 int		argument_check(int count, char **str);
 int		check_dirname(char *name, char **list);
 int		file_and_directory_count(const char *dirname, int count);
-t_data	*a_to_z_sort(t_data *to_sort, int n);
+void	a_to_z_sort(t_data *to_sort, int n);
 t_data	*dir_stream(const char *dirname, t_data *arr, int i, int count);
 t_data	*flag_check(t_data *arguments, char *str);
 t_data	*store_arguments(t_data *to_save, char **str);

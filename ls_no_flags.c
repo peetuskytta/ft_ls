@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:03:28 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/23 12:18:31 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/24 08:34:47 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	print_ls(t_data *to_print, int i)
 	ft_putendl("");
 }
 
-void	ls_w_flags(t_data *arr_of_s, char *name)
+void	ls_w_flags(t_data *arr, char *name)
 {
-	arr_of_s = dir_stream(name, arr_of_s, 0, 0);
-	arr_of_s = a_to_z_sort(arr_of_s, arr_of_s->count);
-	print_ls(arr_of_s, 0);
+	arr = dir_stream(name, arr, 0, 0);
+	//arr = a_to_z_sort(arr, arr->count);
+	print_ls(arr, 0);
 }

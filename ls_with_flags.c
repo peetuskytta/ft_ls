@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:29:54 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/23 15:32:00 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/24 08:58:06 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_data	*dir_stream(const char *dirname, t_data *arr, int i, int count)
 		i++;
 	}
 	closedir(dir);
-	dot_file_count(arr, 0);
+	sort_by_flag(arr);
 	return (f);
 }
 
@@ -75,7 +75,6 @@ void	ls_with_extra(t_data *arr, char **str, const char *name)
 	else
 	{
 		arr = dir_stream(name, arr, 0, 0);
-		arr = a_to_z_sort(arr, arr->count);
 		if (arr->flags[0] == 1)
 			print_long(arr, 0);
 		else

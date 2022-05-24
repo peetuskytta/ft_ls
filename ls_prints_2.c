@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:56:29 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/23 15:21:25 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/24 08:50:14 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	print_long(t_data *arr, int i)
 	while (arr->count > i)
 	{
 		print_rights(&arr[i].info);
+		ft_putnbr(arr[i].info.st_nlink);
+		ft_putstr("	");
+		ft_putstr(arr[i].f_name);
 		ft_putendl("");
 		i++;
 	}
@@ -34,4 +37,5 @@ void	print_rights(struct stat *stats)
 	check_grp(stats->st_mode, str);
 	check_oth(stats->st_mode, str);
 	ft_putstr(str);
+	ft_putstr("	");
 }
