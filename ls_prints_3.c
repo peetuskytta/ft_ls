@@ -44,6 +44,7 @@ void	print_t_mod(struct stat *stats)
 	}
 	ft_putstr(" ");
 	ft_free_array(5, str2);
+	free(str);
 }
 
 void	print_size(int size, int pad)
@@ -58,4 +59,17 @@ void	print_size(int size, int pad)
 		len--;
 	}
 	space_after_nbr(size);
+}
+
+void	print_nb_links(int nbr, int pad)
+{
+	int	len;
+
+	len = pad - ft_nblen(nbr);
+	while (len > 1)
+	{
+		ft_putchar(' ');
+		len--;
+	}
+	space_after_nbr(nbr);
 }

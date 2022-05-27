@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:29:54 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/27 11:13:23 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/27 19:56:15 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,15 @@ t_data	*dir_stream(const char *dirname, t_data *arr, int i, int count)
 	return (f);
 }
 
+	//ft_putnbr_endl(arr->flag_args);
+	//ft_putnbr_endl(arr->arg_count);
+	//ft_putnbr_endl(arr->count);
 /*
 ** Driver function when there are more than 2 arguments (argc).
 */
 void	ls_with_extra(t_data *arr, char **str, const char *name)
 {
 	arr = store_arguments(arr, str);
-	//ft_putnbr_endl(arr->flag_args);
-	//ft_putnbr_endl(arr->arg_count);
-	//ft_putnbr_endl(arr->count);
 	if (arr->list[0] != NULL)
 	{
 		exist_check(arr, 0);

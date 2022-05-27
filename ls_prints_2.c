@@ -6,22 +6,21 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:56:29 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/27 10:41:35 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/27 19:58:23 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
+// reminder: option to print via **list
 void	print_long(t_data *arr, int i)
 {
 	if (arr->flags[1] == 0)
 		i = arr->start;
-	//ft_putnbr_endl(arr[0].info.st_blksize);
-	//ft_putnbr_endl(arr[0].info.st_blocks);
 	while (arr->count > i)
 	{
 		print_rights(&arr[i].info);
-		space_after_nbr(arr[i].info.st_nlink);
+		print_nb_links(arr[i].info.st_nlink, arr->padding[0]);
 		print_users(&arr[i].info);
 		print_size(arr[i].info.st_size, arr->padding[1]);
 		print_t_mod(&arr[i].info);

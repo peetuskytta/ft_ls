@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:45:58 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/27 10:30:02 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/27 17:28:11 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_data
 	struct stat	info;
 }	t_data;
 
+void	print_nb_links(int nbr, int pad);
 void	print_t_mod(struct stat *stats);
 void	save_padding(t_data *arr, int i);
 void	print_size(int size, int pad);
