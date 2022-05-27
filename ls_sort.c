@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 08:53:43 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/24 11:35:58 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/27 08:14:03 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,23 @@ void	argument_sort(char **list, int n)
 void	sort_by_flag(t_data *arr)
 {
 	dot_file_count(arr, 0);
+	save_padding(arr, 0);
 	a_to_z_sort(arr, arr->count);
 	//if (arr->flags[4] == 1)
 		//arr = time_sort(arr, arr->count);
 	if (arr->flags[2] == 1)
-		reverse_order(arr, arr->count);
+		reverse_order(arr);
+	//arr->count = arr[1].count;
 }
 
-void	reverse_order(t_data *arr, int end)
+void	reverse_order(t_data *arr)
 {
 	int		start;
+	int		end;
 	t_data	temp;
 
+	end = arr[1].count;
 	start = 0;
-	ft_putstr(arr[start].f_name);
-	ft_putnbr_endl(start);
-	ft_putstr(arr[end].f_name);
-	ft_putnbr_endl(end);
 	while (start < end)
 	{
 		temp = arr[start];

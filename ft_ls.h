@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:45:58 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/24 11:34:34 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/27 09:34:14 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <dirent.h>
 # include <stdio.h>
 # include <sys/stat.h>
+# include <sys/types.h>
+# include <grp.h>
+# include <pwd.h>
+# include <time.h>
 
 typedef struct s_data
 {
@@ -29,7 +33,7 @@ typedef struct s_data
 	int			start;
 	int			count;
 	int			size;
-	int			padding;
+	int			padding[1];
 	int			hd_count;
 	size_t		len;
 	int			arg_count;
@@ -37,8 +41,14 @@ typedef struct s_data
 	struct stat	info;
 }	t_data;
 
+void	print_t_mod(int time);
+void	save_padding(t_data *arr, int i);
+void	print_size(int size, int pad);
+void	space_after_nbr(int nbr);
+void	print_users(struct stat *stats);
+void	space_after_str(char *str);
 void	sort_by_flag(t_data *arr);
-void	reverse_order(t_data *arr, int n);
+void	reverse_order(t_data *arr);
 int		argument_check(int count, char **str);
 int		check_dirname(char *name, char **list);
 int		file_and_directory_count(const char *dirname, int count);

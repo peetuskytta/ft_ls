@@ -8,6 +8,7 @@ SOURCES := ls_main.c \
 	ls_primary_checks.c \
 	ls_prints_1.c \
 	ls_prints_2.c \
+	ls_prints_3.c \
 	ls_sort.c \
 	ls_no_flags.c \
 	ls_with_flags.c \

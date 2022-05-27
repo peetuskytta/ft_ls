@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:03:28 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/24 08:34:47 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/24 16:34:02 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_ls(t_data *to_print, int i)
 {
-	while (i < to_print->count)
+	while (i < to_print[1].count)
 	{
 		if (to_print[i].f_name[0] != '.')
 		{

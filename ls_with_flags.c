@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:29:54 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/24 10:49:26 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/27 07:56:02 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 */
 void	print_ls_a(t_data *to_print, int i)
 {
-	while (i < to_print[0].count)
+	while (i < to_print[1].count)
 	{
 		ft_putstr(to_print[i].f_name);
-		if (to_print[0].count != i + 1)
+		if (to_print[1].count != i + 1)
 			ft_putstr("  ");
 		i++;
 	}
@@ -56,8 +56,8 @@ t_data	*dir_stream(const char *dirname, t_data *arr, int i, int count)
 		entity = readdir(dir);
 		i++;
 	}
-	closedir(dir);
 	sort_by_flag(arr);
+	closedir(dir);
 	return (f);
 }
 
@@ -67,6 +67,9 @@ t_data	*dir_stream(const char *dirname, t_data *arr, int i, int count)
 void	ls_with_extra(t_data *arr, char **str, const char *name)
 {
 	arr = store_arguments(arr, str);
+	//ft_putnbr_endl(arr->flag_args);
+	//ft_putnbr_endl(arr->arg_count);
+	//ft_putnbr_endl(arr->count);
 	if (arr->list[0] != NULL)
 	{
 		exist_check(arr, 0);

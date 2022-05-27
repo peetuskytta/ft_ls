@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:02:55 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/23 15:24:25 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/27 09:35:46 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,25 @@ int	check_dirname(char *name, char **list)
 			i++;
 	}
 	return (0);
+}
+
+void	save_padding(t_data *arr, int i)
+{
+	while (arr->count > i)
+	{
+		if (i == 0)
+		{
+			arr->padding[0] = arr[i].info.st_nlink;
+			arr->padding[1] = arr[i].info.st_size;
+		}
+		i++;
+		if (arr[i].info.st_nlink > arr[i - 1].info.st_nlink)
+			arr->padding[0] = arr[i].info.st_nlink;
+		if (arr[i].info.st_size > arr[i - 1].info.st_size)
+			arr->padding[1] = arr[i].info.st_size;
+	}
+	arr->padding[1] = ft_nblen(arr->padding[1]) + 1;
+	arr->padding[0] = ft_nblen(arr->padding[0]) + 1;
+	//ft_putnbr_endl(arr->padding[0]);
+	//ft_putnbr_endl(arr->padding[1]);
 }
