@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:29:54 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/27 07:56:02 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/27 11:13:23 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	ls_with_extra(t_data *arr, char **str, const char *name)
 		else
 			print_ls_a(arr, 0);
 	}
+	if (arr->list[0] != NULL)
+		ft_free_array(arr->arg_count, arr->list);
 }
 
 void	exist_check(t_data *to_check, int i)

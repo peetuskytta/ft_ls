@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:56:29 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/27 09:46:28 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/27 10:41:35 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_long(t_data *arr, int i)
 		space_after_nbr(arr[i].info.st_nlink);
 		print_users(&arr[i].info);
 		print_size(arr[i].info.st_size, arr->padding[1]);
-		//print_t_mod(arr[i].info->st_mtim);
+		print_t_mod(&arr[i].info);
 		ft_putstr(arr[i].f_name);
 		ft_putendl("");
 		i++;
