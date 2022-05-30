@@ -6,28 +6,23 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:56:29 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/27 19:58:23 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/30 08:54:44 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-// reminder: option to print via **list
 void	print_long(t_data *arr, int i)
 {
-	if (arr->flags[1] == 0)
-		i = arr->start;
-	while (arr->count > i)
+	if (arr->list[0] == NULL || arr->off == 1)
 	{
-		print_rights(&arr[i].info);
-		print_nb_links(arr[i].info.st_nlink, arr->padding[0]);
-		print_users(&arr[i].info);
-		print_size(arr[i].info.st_size, arr->padding[1]);
-		print_t_mod(&arr[i].info);
-		ft_putstr(arr[i].f_name);
-		ft_putendl("");
-		i++;
+		if (arr->flags[1] == 1)
+			long_with_hidden(arr, i);
+		else
+			long_without_hidden(arr, i);
 	}
+	else
+		long_args(arr, i);
 }
 
 void	print_users(struct stat *stats)
@@ -54,4 +49,23 @@ void	print_rights(struct stat *stats)
 	check_oth(stats->st_mode, str);
 	ft_putstr(str);
 	ft_putstr(" ");
+}
+
+void	print_l_list(t_data *arr, int i)
+{
+	t_data	*f;
+	int		nb;
+
+	nb = arr->arg_count - arr->flag_args;
+	f = ft_memalloc((nb) * sizeof(t_data));
+	f = arr;
+	while (arr->list[i] != NULL)
+	{
+		ft_strcpy(f[i].f_name, arr->list[i]);
+		f[i].count = nb;
+		stat(f[i].f_name, &f[i].info);
+		i++;
+	}
+	save_padding(arr, 0);
+	print_long(arr, 0);
 }

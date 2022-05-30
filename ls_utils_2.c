@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:02:55 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/27 17:25:04 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/30 07:39:31 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,4 @@ void	save_padding(t_data *arr, int i)
 	}
 	arr->padding[0] = ft_nblen(arr->padding[0]) + 1;
 	arr->padding[1] = ft_nblen(arr->padding[1]) + 1;
-	//ft_putnbr_endl(arr->padding[0]);
-	//ft_putnbr_endl(arr->padding[1]);
 }

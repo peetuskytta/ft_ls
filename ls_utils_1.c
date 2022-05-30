@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_utility_functions_1.c                           :+:      :+:    :+:   */
+/*   ls_utils_1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 15:45:29 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/23 14:03:27 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/30 11:56:25 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_data	*store_rest(t_data *save, char **str, int i)
 	}
 	save->list[index] = NULL;
 	if (save->arg_count > 2)
-		argument_sort(save->list, save->arg_count - save->flag_args);
+		argument_sort(save->list, nb - save->flag_args);
 	return (save);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:45:58 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/27 17:28:11 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/30 09:38:41 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,20 @@ typedef struct s_data
 	int			padding[1];
 	int			hd_count;
 	size_t		len;
-	int			arg_count;
 	char		**list;
+	int			arg_count;
+	int			off;
 	struct stat	info;
 }	t_data;
 
+void	copy_info(t_data *temp, t_data *arr);
+void	ls_l_flags(t_data *arr, char *name);
+void	args_dirs(t_data *arr, int i, char *path);
+void	long_args(t_data *arr, int i);
+void	reverse_l_args(t_data *arr, int i);
+void	long_without_hidden(t_data *arr, int i);
+void	long_with_hidden(t_data *arr, int i);
+void	print_l_list(t_data *arr, int i);
 void	print_nb_links(int nbr, int pad);
 void	print_t_mod(struct stat *stats);
 void	save_padding(t_data *arr, int i);

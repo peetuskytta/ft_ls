@@ -15,6 +15,7 @@ SOURCES := ls_main.c \
 	ls_utils_1.c \
 	ls_utils_2.c \
 	ls_utils_3.c \
+	ls_utils_4.c \
 
 OBJ := $(SOURCES:.c=.o)
 

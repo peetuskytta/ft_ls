@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:29:54 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/27 19:56:15 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/05/30 08:46:11 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ void	ls_with_extra(t_data *arr, char **str, const char *name)
 	if (arr->list[0] != NULL)
 	{
 		exist_check(arr, 0);
-		check_dir_access(arr, 0, arr->path);
+		if (arr->flags[0] == 0)
+			check_dir_access(arr, 0, arr->path);
+		else
+			print_l_list(arr, 0);
 	}
 	else
 	{
@@ -83,12 +86,13 @@ void	ls_with_extra(t_data *arr, char **str, const char *name)
 		else
 			print_ls_a(arr, 0);
 	}
-	if (arr->list[0] != NULL)
-		ft_free_array(arr->arg_count, arr->list);
+	//if (arr->list[0] != NULL)
+	//	ft_free_array(arr->arg_count, arr->list);
 }
 
 void	exist_check(t_data *to_check, int i)
 {
 	print_nonexist(to_check, i);
-	print_exists(to_check, i);
+	if (to_check->list[0] != NULL && to_check->flags[0] == 0)
+		print_exists(to_check, i);
 }
