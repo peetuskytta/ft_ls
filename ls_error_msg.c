@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_recursive.c                                     :+:      :+:    :+:   */
+/*   ls_error_msg.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/31 14:23:34 by pskytta           #+#    #+#             */
-/*   Updated: 2022/06/02 17:18:59 by pskytta          ###   ########.fr       */
+/*   Created: 2022/05/31 10:29:44 by pskytta           #+#    #+#             */
+/*   Updated: 2022/05/31 12:05:04 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ls_recursive(t_data *info)
+void	ch_error(char c)
 {
-	t_file	*arr;
-
-	arr = read_dir_stream(info, 0);
-	sort_driver(arr, info);
-	// sort time
-	print_short(arr, info);
-	free(arr);
+	ft_putstr("ls: illegal option -- ");
+	ft_putchar(c);
+	ft_putendl("");
+	ft_putendl("usage: ./ft_ls ls [-larRt] [file ...]");
+	exit(-1);
 }
 
-void	print_short(t_file *arr, t_data *info)
+void	command_not_found(char *str)
 {
-	int	i;
+	ft_putstr("unknown command: ");
+	ft_putendl(str);
+	exit(-1);
+}
 
-	i = 0;
-	while (i < info->file_count)
-	{
-		ft_putendl(arr[i].name);
-		i++;
-	}
+void	usage_error()
+{
+	ft_putendl("usage: <./ft_ls> <ls> <flags/filenames>");
+	exit(-1);
 }
