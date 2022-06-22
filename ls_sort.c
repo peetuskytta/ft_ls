@@ -5,80 +5,66 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 08:53:43 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/30 12:01:25 by pskytta          ###   ########.fr       */
+/*   Created: 2022/05/31 14:08:32 by pskytta           #+#    #+#             */
+/*   Updated: 2022/06/02 13:51:20 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	a_to_z_sort(t_data *to_sort, int n)
+void	sort_list_ascending(char **list, int n)
 {
 	int		i;
-	int		j;
-	t_data	temp;
-
-	i = 0;
-	while (i < n - 1)
-	{
-		j = i + 1;
-		while (j < n)
-		{
-			if (ft_strcmp(to_sort[i].f_name, to_sort[j].f_name) > 0)
-			{
-				temp = to_sort[i];
-				to_sort[i] = to_sort[j];
-				to_sort[j] = temp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	argument_sort(char **list, int n)
-{
-	int		i;
-	int		j;
+	int		ii;
 	char	*temp;
 
 	i = 0;
 	while (i < n - 1)
 	{
-		j = i + 1;
-		while (j < n)
+		ii = i + 1;
+		while (ii < n)
 		{
-			if (ft_strcmp(list[i], list[j]) > 0)
+			if (ft_strcmp(list[i], list[ii]) > 0)
 			{
 				temp = list[i];
-				list[i] = list[j];
-				list[j] = temp;
+				list[i] = list[ii];
+				list[ii] = temp;
 			}
-			j++;
+			ii++;
 		}
 		i++;
 	}
 }
 
-void	sort_by_flag(t_data *arr)
+void	sort_struct_array_asc(t_file *arr, int n)
 {
-	dot_file_count(arr, 0);
-	save_padding(arr, 0);
-	a_to_z_sort(arr, arr->count);
-	//if (arr->flags[4] == 1)
-		//arr = time_sort(arr, arr->count);
-	if (arr->flags[2] == 1)
-		reverse_order(arr);
-	//arr->count = arr[1].count;
+	int		i;
+	int		ii;
+	t_file	temp;
+
+	i = 0;
+	while (i < n - 1)
+	{
+		ii = i + 1;
+		while (ii < n)
+		{
+			if (ft_strcmp(arr[i].name, arr[ii].name) > 0)
+			{
+				temp = arr[i];
+				arr[i] = arr[ii];
+				arr[ii] = temp;
+			}
+			ii++;
+		}
+		i++;
+	}
 }
 
-void	reverse_order(t_data *arr)
+void	sort_reverse(t_file *arr, int end)
 {
 	int		start;
-	int		end;
-	t_data	temp;
+	t_file	temp;
 
-	end = arr[1].count;
 	start = 0;
 	while (start < end)
 	{
@@ -88,4 +74,26 @@ void	reverse_order(t_data *arr)
 		start++;
 		end--;
 	}
+}
+
+int	file_count(t_data *info)
+{
+	DIR				*d;
+	struct dirent	*entity;
+	int				count;
+
+	count = 0;
+	d = opendir(".");
+	if (d == NULL)
+		return (0);
+	entity = readdir(d);
+	while (entity != NULL)
+	{
+		if (entity->d_name[0] != '.' || \
+			(entity->d_name[0] == '.' && info->f_all == 1))
+			count++;
+		entity = readdir(d);
+	}
+	closedir(d);
+	return (count);
 }

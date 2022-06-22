@@ -4,18 +4,12 @@ FLAGS := -Wall -Wextra -Werror
 
 NAME := ft_ls
 SOURCES := ls_main.c \
-	ls_error_handling.c \
-	ls_primary_checks.c \
-	ls_prints_1.c \
-	ls_prints_2.c \
-	ls_prints_3.c \
+	ls_parse_flags.c \
+	ls_error_msg.c \
+	ls_driver.c \
+	ls_only.c \
 	ls_sort.c \
-	ls_no_flags.c \
-	ls_with_flags.c \
-	ls_utils_1.c \
-	ls_utils_2.c \
-	ls_utils_3.c \
-	ls_utils_4.c \
+	ls_recursive.c \
 
 OBJ := $(SOURCES:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:45:58 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/30 09:38:41 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/06/02 17:19:01 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <dirent.h>
 # include <stdio.h>
+# include <errno.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <grp.h>
@@ -25,71 +26,47 @@
 
 typedef struct s_data
 {
-	char		f_name[256];
-	char		path[256];
-	int			type;
-	int			flags[5];
-	int			flag_args;
-	int			start;
-	int			count;
-	int			size;
-	int			padding[1];
-	int			hd_count;
-	size_t		len;
-	char		**list;
+	int			f_all;
+	int			f_long;
+	int			f_reve;
+	int			f_recu;
+	int			f_time;
+	int			padding[2];
+	int			file_count;
+	int			flag_count;
+	int			link_count;
 	int			arg_count;
-	int			off;
-	struct stat	info;
+	char		**list;
+	DIR			*dir;
+	struct dirent	*ent;
 }	t_data;
 
-void	copy_info(t_data *temp, t_data *arr);
-void	ls_l_flags(t_data *arr, char *name);
-void	args_dirs(t_data *arr, int i, char *path);
-void	long_args(t_data *arr, int i);
-void	reverse_l_args(t_data *arr, int i);
-void	long_without_hidden(t_data *arr, int i);
-void	long_with_hidden(t_data *arr, int i);
-void	print_l_list(t_data *arr, int i);
-void	print_nb_links(int nbr, int pad);
-void	print_t_mod(struct stat *stats);
-void	save_padding(t_data *arr, int i);
-void	print_size(int size, int pad);
-void	space_after_nbr(int nbr);
-void	print_users(struct stat *stats);
-void	space_after_str(char *str);
-void	sort_by_flag(t_data *arr);
-void	reverse_order(t_data *arr);
-int		argument_check(int count, char **str);
-int		check_dirname(char *name, char **list);
-int		file_and_directory_count(const char *dirname, int count);
-void	a_to_z_sort(t_data *to_sort, int n);
-t_data	*dir_stream(const char *dirname, t_data *arr, int i, int count);
-t_data	*flag_check(t_data *arguments, char *str);
-t_data	*store_arguments(t_data *to_save, char **str);
-t_data	*store_flags(t_data *save, char **str, int i);
-t_data	*store_rest(t_data *save, char **str, int i);
-void	argument_sort(char **list, int n);
+typedef struct s_file
+{
+	char			path[8192];
+	char			name[255];
+	struct stat		stats;
+}	t_file;
+
+int		file_count(t_data *info);
+t_file	*read_dir_stream(t_data *info, int i);
 void	ch_error(char c);
-void	check_dir_access(t_data *arr, int i, char *path);
-void	check_file_type(int mode, char *str);
-void	check_grp(int mode, char *str);
-void	check_oth(int mode, char *str);
-void	check_usr(int mode, char *str);
-void	dot_file_count(t_data *arr, int i);
-void	error_prints(int n, char *str);
-void	exist_check(t_data *to_check, int i);
-void	ls_w_flags(t_data *arr_of_s, char *name);
-void	ls_with_extra(t_data *arr, char **str, const char *name);
-void	non_exist(char *name);
-void	path_maker(char *start, char *name);
-void	print_dir_access_err(char *name, int arg_count);
-void	print_double(char **str);
-void	print_exists(t_data *to_print, int i);
-void	print_filename(char *name, int id);
-void	print_long(t_data *arr, int i);
-void	print_ls(t_data *to_print, int i);
-void	print_ls_a(t_data *to_print, int i);
-void	print_nonexist(t_data *to_print, int i);
-void	print_rights(struct stat *stats);
+void	command_not_found(char *str);
+void	flag_check(t_data *info, char *str);
+void	flag_save(char c, t_data *info);
+void	init_variables(t_data *info);
+void	ls_driver(t_data *info);
+void	ls_only(t_data *info, int i);
+void	ls_recursive(t_data *info);
+void	parse_flags(char **str, t_data *info);
+void	primary_checks(char **str, int args, t_data *info);
+void	print_short(t_file *arr, t_data *info);
+void	sort_driver(t_file *arr, t_data *info);
+void	sort_list_ascending(char **list, int n);
+void	sort_reverse(t_file *arr, int end);
+void	sort_struct_array_asc(t_file *arr, int n);
+void	usage_error();
+void	useful(t_data *data);
+
 
 #endif

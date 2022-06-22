@@ -5,32 +5,49 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 08:49:13 by pskytta           #+#    #+#             */
-/*   Updated: 2022/05/30 10:12:13 by pskytta          ###   ########.fr       */
+/*   Created: 2022/05/31 10:07:54 by pskytta           #+#    #+#             */
+/*   Updated: 2022/06/02 13:58:48 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_data	*store_arguments(t_data *to_save, char **str)
+void	init_variables(t_data *info)
 {
-	to_save = store_flags(to_save, str, 2);
-	to_save = store_rest(to_save, str, to_save->flag_args + 2);
-	return (to_save);
+	info->f_all = 0;
+	info->f_long = 0;
+	info->f_reve = 0;
+	info->f_recu = 0;
+	info->f_time = 0;
+	info->padding[0] = 0;
+	info->padding[1] = 0;
+	info->file_count = 0;
+	info->flag_count = 0;
+	info->arg_count = 0;
 }
 
-int	main(int argc, char *argv[])
+void	useful(t_data *data)
 {
-	t_data	*arr_of_s;
+	printf("\nflag l: %d\n", data->f_long);
+	printf("flag a: %d\n", data->f_all);
+	printf("flag r: %d\n", data->f_reve);
+	printf("flag R: %d\n", data->f_recu);
+	printf("flag t: %d\n", data->f_time);
+	printf("file count: %d\n", data->file_count);
+	printf("flag count: %d\n", data->flag_count);
+	printf("Arg count: %d\n\n", data->arg_count);
+}
 
-	arr_of_s = ft_memalloc(sizeof(t_data));
-	arr_of_s->arg_count = argc - 2;
-	if (argument_check(argc, argv) == 1)
-		ls_w_flags(arr_of_s, ".");
-	else if (argument_check(argc, argv) == 2)
-		ls_with_extra(arr_of_s, argv, ".");
-	else
-		error_prints(1, "usage: ./ft_ls <ls> <flags> <filename>");
-	free(arr_of_s);
+int	main(int argc, char **argv)
+{
+	t_data	*info;
+
+	info = ft_memalloc(sizeof(t_data));
+	primary_checks(argv, argc, info);
+	ls_driver(info);
+
+	//useful(info);
+
+	free(info);
 	return (0);
 }
