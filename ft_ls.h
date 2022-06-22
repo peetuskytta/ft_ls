@@ -73,7 +73,7 @@ void	print_rights(struct stat *stats, t_file *arr);
 void	print_short(t_file *arr, int f_count);
 void	print_users(struct stat *stats);
 void	sort_driver(t_file *arr, t_data *info, int f_count);
-void	sort_struct_array_asc(t_file *arr, int n);
+void	sort_struct_ascending(t_file *arr, int n);
 void	sort_struct_reverse(t_file *arr, int end);
 void	sort_struct_time(t_file *arr, int n);
 void	space_after_nbr(int nbr);

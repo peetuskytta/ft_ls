@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 10:04:29 by pskytta           #+#    #+#             */
-/*   Updated: 2022/06/20 18:03:20 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/06/22 16:53:58 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void	swap_struct(t_file *first, t_file *second)
 }
 
 /*
-**	Sorts array of structs in ascending order.
+**	Sorts the array of structs in ascending order.
 */
-void	sort_struct_array_asc(t_file *arr, int n)
+void	sort_struct_ascending(t_file *arr, int n)
 {
 	int		i;
 	int		ii;

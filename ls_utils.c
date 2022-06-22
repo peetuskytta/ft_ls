@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 10:05:23 by pskytta           #+#    #+#             */
-/*   Updated: 2022/06/21 13:48:31 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/06/22 16:52:58 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	print_from_string(char *str, int start, int n)
 }
 
 /*
-**	Utility function to check how many arguments are files and directories.
-**	Used in counters and to define break from loops.
+**	Utility function to count the number of files and directories
+**	in the arguments.
 */
 void	count_files_directories(t_file *arr, t_data *info, int i)
 {
@@ -66,6 +66,9 @@ void	count_files_directories(t_file *arr, t_data *info, int i)
 	}
 }
 
+/*
+**	Checks if malloc returned NULL and exits if true.
+*/
 void	allocation_check(t_data *info, t_file *arr, char *ft_name)
 {
 	if (arr == NULL)

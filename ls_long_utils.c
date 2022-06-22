@@ -6,12 +6,15 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 10:01:48 by pskytta           #+#    #+#             */
-/*   Updated: 2022/06/21 14:24:44 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:43:01 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
+/*
+**	Writes the long output user rights
+*/
 static void	check_user(int mode, char *str)
 {
 	if (mode & S_IRUSR)
@@ -26,6 +29,9 @@ static void	check_user(int mode, char *str)
 		str[3] = 'x';
 }
 
+/*
+**	Writes the long output group rights
+*/
 static void	check_group(int mode, char *str)
 {
 	if (mode & S_IRGRP)
@@ -40,6 +46,9 @@ static void	check_group(int mode, char *str)
 		str[6] = 'x';
 }
 
+/*
+**	Writes the long output others rights
+*/
 static void	check_other(int mode, char *str)
 {
 	if (mode & S_IROTH)

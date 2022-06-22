@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 10:20:30 by pskytta           #+#    #+#             */
-/*   Updated: 2022/06/20 12:06:59 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/06/22 16:58:37 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 **	Initializes all the variables in the t_data info (struct) which are used
-**	throughout the program.
+**	throughout the program in different checks.
 */
 static void	init_variables(t_data *info)
 {

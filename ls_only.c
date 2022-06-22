@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 10:02:39 by pskytta           #+#    #+#             */
-/*   Updated: 2022/06/21 14:14:33 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:39:31 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	write_ls_only(t_file *arr, int f_count)
 	int	i;
 
 	i = 0;
-	sort_struct_array_asc(arr, f_count);
+	sort_struct_ascending(arr, f_count);
 	while (i < f_count)
 	{
 		write(1, arr[i].name, ft_strlen(arr[i].name));
@@ -32,29 +32,29 @@ static void	write_ls_only(t_file *arr, int f_count)
 
 /*
 **	Function that takes a path and opens a directory stream.
-**	In case of NULL return it outputs permission denied message.
+**	In case of NO_ACCESS return it outputs permission denied message.
 */
 void	no_flags(t_data *info, const char *path)
 {
 	t_file	*arr;
 	int		f_count;
-	char	*strname;
+	char	*name;
 
-	strname = NULL;
+	name = NULL;
 	f_count = file_count(info, path);
 	arr = read_dir_stream(info, path, 0, f_count);
 	if (arr == NO_ACCESS && path)
 	{
-		strname = ft_strrchr(path, '/');
-		if (strname)
-			no_directory_access(++strname);
+		name = ft_strrchr(path, '/');
+		if (name)
+			no_directory_access(++name);
 		else
 			no_directory_access((char *)path);
 	}
 	else
 	{
-		if (!(path))
-			no_directory_access(strname);
+//		if (!(path))
+//			no_directory_access(name);
 		write_ls_only(arr, f_count);
 		if (info->arg_count > 1)
 			write(1, "\n", 1);

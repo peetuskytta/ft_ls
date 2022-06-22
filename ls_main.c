@@ -6,14 +6,15 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 10:02:15 by pskytta           #+#    #+#             */
-/*   Updated: 2022/06/21 14:55:12 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:14:25 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
 /*
-**	Function to handle the simplest cases and redirect to initial cases.
+**	Function to handle the simple ls or more complex cases like flags
+**	and arguments.
 */
 static void	ls_arg_flag_driver(t_data *info, char **str)
 {

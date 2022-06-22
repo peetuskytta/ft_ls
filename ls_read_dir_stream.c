@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 10:03:35 by pskytta           #+#    #+#             */
-/*   Updated: 2022/06/22 15:24:44 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/06/22 16:57:26 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 **	Reads file or link data to the buf stats. Saves link path also.
-**	This is where all the long format output information is stored.
 */
 static void	read_stat_and_lstat(char *name, unsigned char type, t_file *file)
 {

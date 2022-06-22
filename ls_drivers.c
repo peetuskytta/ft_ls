@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 09:59:15 by pskytta           #+#    #+#             */
-/*   Updated: 2022/06/21 14:40:23 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:04:38 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 void	sort_driver(t_file *arr, t_data *info, int f_count)
 {
-	sort_struct_array_asc(arr, f_count);
+	sort_struct_ascending(arr, f_count);
 	if (info->f_time == 1)
 		sort_struct_time(arr, f_count);
 	if (info->f_reve == 1)
