@@ -6,7 +6,7 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 10:02:39 by pskytta           #+#    #+#             */
-/*   Updated: 2022/06/22 17:39:31 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/06/24 14:02:03 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ void	no_flags(t_data *info, const char *path)
 	}
 	else
 	{
-//		if (!(path))
-//			no_directory_access(name);
 		write_ls_only(arr, f_count);
 		if (info->arg_count > 1)
 			write(1, "\n", 1);
