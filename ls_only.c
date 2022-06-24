@@ -6,14 +6,14 @@
 /*   By: pskytta <pskytta@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 10:02:39 by pskytta           #+#    #+#             */
-/*   Updated: 2022/06/24 14:02:03 by pskytta          ###   ########.fr       */
+/*   Updated: 2022/06/24 15:31:04 by pskytta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
 /*
-**	Writes simple ls commands with no flags or whatsoever.
+**	Writes the filenames stored in an array of structs.
 */
 static void	write_ls_only(t_file *arr, int f_count)
 {
