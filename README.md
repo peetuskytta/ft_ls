@@ -30,6 +30,8 @@ I started the project by learning about directory streams and reading the manual
 
 ## Learnings:
 
+My learnings were my failures. Read below. 
+
 ### Failures:
 - **Planning**
   - plan ahead before coding.
@@ -42,7 +44,7 @@ I started the project by learning about directory streams and reading the manual
   - ask help more often.
   - use peers as rubber ducks more often.
   
->Occasionally you end up stuck with your thinking and can't get the problem solved. This happened quite often and in the beginning I was quite stubborn and did want to solve the issues by myself which was a mistake. Only when I started bouncing ideas to my peers and talking about problems in my program I was able to understand how to solve them. It is quite remarkable how we realise we already know the answer to the problem by talking it out loud to someone.
+>Occasionally you end up stuck with your thinking and can't get the problem solved. This happened quite often and in the beginning I was quite stubborn and did want to solve the issues by myself which was a mistake. Only when I started bouncing ideas to my peers and talking about problems in my program I was able to understand how to solve them. It is quite remarkable how we realise we already know the answer to the problem by saying it out loud to someone.
 
 ### Successess:
 - **Functions**
@@ -50,3 +52,5 @@ I started the project by learning about directory streams and reading the manual
   - kept functions as simple as possible (doing one thing only).
   - write code according to the school's norme.
   - valuable lessons about malloc() protection.
+  - bash script for testing the project output compared to the original `ls`command.
+  - simplified my bash script for updating prototypes in header file.
